@@ -1,0 +1,518 @@
+<div class="main-content " [ngClass]="{ 'filter_loading' : loading }">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-12 col-sm-12" style="z-index: 999;">
+                <mat-form-field class="max-width">
+                    <input matInput [matDatepicker]="picker2" placeholder="Periodo" [formControl]=" date" (dateChange)="alerta()">
+                    <mat-datepicker-toggle matSuffix [for]="picker2">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker2 startView="year" (monthSelected)="chosenMonthHandler($event, picker2)" panelClass="example-month-picker">
+                    </mat-datepicker>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats dash-min-height">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon"><i class="material-icons">store</i></div>
+                        <p class="card-category">Colocaciones</p>
+                        <h3 class="card-title" *ngIf="dashboard "> {{dashboard.VNPP_Soles | number:'1.2-2' }} <span class="tipo-moneda">PEN</span> </h3>
+                        <h3 class="card-title" *ngIf="dashboard ">{{dashboard.VNPP_Dolar | number:'1.2-2' }} <span class="tipo-moneda">USD</span></h3>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats"><i class="material-icons">update</i>&uacute;ltimo mes </div>
+                        <div class="stats total" *ngIf="dashboard "> <i class="total">Total : S/ &nbsp;</i><span class="pull-right total-monto"> {{ totalColocaciones | number:'1.2-2'}}</span> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats dash-min-height" style="min-height: 165px;">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon"><i class="material-icons">attach_money</i></div>
+                        <p class="card-category">Adelanto</p>
+                        <h3 class="card-title" *ngIf="dashboard "> {{dashboard.Adelanto_Soles | number:'1.2-2'}} <span class="tipo-moneda">PEN</span></h3>
+                        <h3 class="card-title" *ngIf="dashboard ">{{dashboard.Adelanto_Dolar | number:'1.2-2'}} <span class="tipo-moneda">USD</span></h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats"><i class="material-icons">update</i>&uacute;ltimo mes</div>
+                        <div class="stats total" *ngIf="dashboard "> <i class="total">Total : S/ &nbsp;</i><span class="pull-right total-monto"> {{ totalAdelanto | number:'1.2-2'}}</span> </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats dash-min-height">
+                    <div class="card-header card-header-warning card-header-icon ">
+                        <div class="card-icon card-ingreso"><i class="material-icons">assessment</i></div>
+                        <p class="card-category">Ingreso</p>
+                        <h3 class="card-title" *ngIf="dashboard "> {{ dashboard.Ingresos_Soles | number:'1.2-2'}} <span class="tipo-moneda">PEN</span></h3>
+                        <h3 class="card-title" *ngIf="dashboard ">{{dashboard.Ingresos_Dolar | number:'1.2-2'}} <span class="tipo-moneda">USD</span></h3>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats"><i class="material-icons">update</i>&uacute;ltimo mes</div>
+                        <div class="stats " *ngIf="dashboard "> <i class="total">Total : S/ &nbsp;</i><span class="pull-right total-monto">
+                                {{ totalIngreso | number:'1.2-2'}}</span> </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats dash-min-height">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon"><i class="material-icons" style="padding-left: 9px;">assignment_turned</i></div>
+                        <p class="card-category">Cobranza</p>
+                        <h3 class="card-title" *ngIf="dashboard "> {{ dashboard.Cobranza_soles | number:'1.2-2'}} <span class="tipo-moneda">PEN</span></h3>
+                        <h3 class="card-title" *ngIf="dashboard ">{{ dashboard.Cobranza_dolar | number:'1.2-2'}} <span class="tipo-moneda">USD</span></h3>
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats"><i class="material-icons">update</i>&uacute;ltimo mes</div>
+                        <div class="stats total" *ngIf="dashboard "> <i class="total">Total : S/ &nbsp;</i><span class="pull-right total-monto"> {{ totalCobranza | number:'1.2-2'}}</span> </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nuevos elementos-->
+        <div class="row d-flex justify-content-around">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats dash-min-height">
+                    <div class="card-header card-header-danger card-header-icon">
+                        <div class="card-icon"><i class="material-icons">receipt</i></div>
+                        <p class="card-category">Cantidad de Facturas</p>
+                        <h3 class="card-title" *ngIf="dashboard ">{{dashboard.Cantidad_Facturas_Soles }}
+                            <span class="tipo-moneda">Facturas en
+                                soles</span> </h3>
+                        <h3 class=" card-title " *ngIf="dashboard ">{{dashboard.Cantidad_Facturas_Dolar }} <span class="tipo-moneda">Facturas en
+                                d&oacute;lares</span></h3>
+                    </div>
+                    <div class="card-footer ">
+                        <div class="stats "><i class="material-icons ">update</i>&uacute;ltimo mes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 ">
+                <div class="card card-stats dash-min-height ">
+                    <div class="card-header card-header-warning card-header-icon ">
+                        <div class="card-icon card-proveedores"><i class="material-icons ">assignment_ind</i></div>
+                        <p class="card-category ">Proveedores</p>
+                        <h3 class="card-title num-text" *ngIf="dashboard ">{{dashboard.Numero_Proveedores}}</h3>
+                    </div>
+                    <div class="card-footer ">
+                        <div class="stats "><i class="material-icons ">update</i>&uacute;ltimo mes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 ">
+                <div class="card card-stats dash-min-height ">
+                    <div class="card-header card-header-primary card-header-icon ">
+                        <div class="card-icon "><i class="material-icons ">people</i></div>
+                        <p class="card-category ">Adquirentes</p>
+                        <h3 class="card-title num-text" *ngIf="dashboard ">{{dashboard.Numero_Adquirentes }}</h3>
+                    </div>
+                    <div class="card-footer ">
+                        <div class="stats "><i class="material-icons ">update</i>&uacute;ltimo mes</div>
+                    </div>
+                </div>
+            </div>
+            <!-- termina nevos elementos-->
+        </div>
+        <!-- Elementos sobrantes comentados-->
+        <!--<div class="row ">
+    <div class="col-md-4 ">
+    <div class="card card-chart ">
+    <div class="card-header card-header-success ">
+    <div class="ct-chart " id="dailySalesChart "></div>
+    </div>
+    <div class="card-body ">
+    <h4 class="card-title ">Daily Sales</h4>
+    <p class="card-category ">
+    <span class="text-success "><i class="fa fa-long-arrow-up "></i> 55% </span> increase in today sales.</p>
+    </div>
+    <div class="card-footer ">
+    <div class="stats ">
+    <i class="material-icons ">access_time</i> updated 4 minutes ago
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-4 ">
+    <div class="card card-chart ">
+    <div class="card-header card-header-warning ">
+    <div class="ct-chart " id="websiteViewsChart "></div>
+    </div>
+    <div class="card-body ">
+    <h4 class="card-title ">Email Subscriptions</h4>
+    <p class="card-category ">Last Campaign Performance</p>
+    </div>
+    <div class="card-footer ">
+    <div class="stats ">
+    <i class="material-icons ">access_time</i> campaign sent 2 days ago
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-4 ">
+    <div class="card card-chart ">
+    <div class="card-header card-header-danger ">
+    <div class="ct-chart " id="completedTasksChart "></div>
+    </div>
+    <div class="card-body ">
+    <h4 class="card-title ">Completed Tasks</h4>
+    <p class="card-category ">Last Campaign Performance</p>
+    </div>
+    <div class="card-footer ">
+    <div class="stats ">
+    <i class="material-icons ">access_time</i> campaign sent 2 days ago
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>-->
+        <div class="row ">
+            <!-- Elementos sobrantes comentados-->
+            <!-- Tabla ocultada momentaneamente-->
+            <!--<div class="col-lg-6 col-md-12 ">
+    <div class="card ">
+    <div class="card-header card-header-tabs card-header-primary ">
+    <div class="nav-tabs-navigation ">
+    <div class="nav-tabs-wrapper ">
+    <span class="nav-tabs-title ">Tasks:</span>
+    <ul class="nav nav-tabs " data-tabs="tabs ">
+    <li class="nav-item ">
+    <a mat-button class="nav-link active " href="#profile " data-toggle="tab ">
+    <i class="material-icons ">bug_report</i> Bugs
+    <div class="ripple-container "></div>
+    </a>
+    </li>
+    <li class="nav-item ">
+    <a mat-button class="nav-link " href="#messages " data-toggle="tab ">
+    <i class="material-icons ">code</i> Website
+    <div class="ripple-container "></div>
+    </a>
+    </li>
+    <li class="nav-item ">
+    <a mat-button class="nav-link " href="#settings " data-toggle="tab ">
+    <i class="material-icons ">cloud</i> Server
+    <div class="ripple-container "></div>
+    </a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    <div class="card-body ">
+    <div class="tab-content ">
+    <div class="tab-pane active " id="profile ">
+    <table class="table ">
+    <tbody>
+    <tr>
+    <td>
+    <div class="form-check ">
+    <label class="form-check-label ">
+    <input class="form-check-input " type="checkbox " value=" " checked>
+    <span class="form-check-sign ">
+    <span class="check "></span>
+    </span>
+    </label>
+    </div>
+    </td>
+    <td>Sign contract for "What are conference organizers afraid of? "</td>
+    <td class="td-actions text-right ">
+    <button mat-raised-button type="button " matTooltip="Edit Task " [matTooltipPosition]=" 'above' " class="btn btn-primary btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">edit</i>
+    </button>
+    <button mat-raised-button type="button " matTooltip="Remove " [matTooltipPosition]=" 'above' " class="btn btn-danger btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">close</i>
+    </button>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="form-check ">
+    <label class="form-check-label ">
+    <input class="form-check-input " type="checkbox " value=" ">
+    <span class="form-check-sign ">
+    <span class="check "></span>
+    </span>
+    </label>
+    </div>
+    </td>
+    <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+    <td class="td-actions text-right ">
+    <button mat-raised-button type="button " matTooltip="Edit Task " [matTooltipPosition]=" 'above' " class="btn btn-primary btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">edit</i>
+    </button>
+    <button mat-raised-button type="button " matTooltip="Remove " [matTooltipPosition]=" 'above' " class="btn btn-danger btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">close</i>
+    </button>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="form-check ">
+    <label class="form-check-label ">
+    <input class="form-check-input " type="checkbox " value=" ">
+    <span class="form-check-sign ">
+    <span class="check "></span>
+    </span>
+    </label>
+    </div>
+    </td>
+    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+    </td>
+    <td class="td-actions text-right ">
+    <button mat-raised-button type="button " matTooltip="Edit Task " [matTooltipPosition]=" 'above' " class="btn btn-primary btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">edit</i>
+    </button>
+    <button mat-raised-button type="button " matTooltip="Remove " [matTooltipPosition]=" 'above' " class="btn btn-danger btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">close</i>
+    </button>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="form-check ">
+    <label class="form-check-label ">
+    <input class="form-check-input " type="checkbox " value=" " checked>
+    <span class="form-check-sign ">
+    <span class="check "></span>
+    </span>
+    </label>
+    </div>
+    </td>
+    <td>Create 4 Invisible User Experiences you Never Knew About</td>
+    <td class="td-actions text-right ">
+    <button mat-raised-button type="button " matTooltip="Edit Task " [matTooltipPosition]=" 'above' " class="btn btn-primary btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">edit</i>
+    </button>
+    <button mat-raised-button type="button " matTooltip="Remove " [matTooltipPosition]=" 'above' " class="btn btn-danger btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">close</i>
+    </button>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <div class="tab-pane " id="messages ">
+    <table class="table ">
+    <tbody>
+    <tr>
+    <td>
+    <div class="form-check ">
+    <label class="form-check-label ">
+    <input class="form-check-input " type="checkbox " value=" " checked>
+    <span class="form-check-sign ">
+    <span class="check "></span>
+    </span>
+    </label>
+    </div>
+    </td>
+    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+    </td>
+    <td class="td-actions text-right ">
+    <button mat-raised-button type="button " matTooltip="Edit Task " [matTooltipPosition]=" 'above' " class="btn btn-primary btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">edit</i>
+    </button>
+    <button mat-raised-button type="button " matTooltip="Remove " [matTooltipPosition]=" 'above' " class="btn btn-danger btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">close</i>
+    </button>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="form-check ">
+    <label class="form-check-label ">
+    <input class="form-check-input " type="checkbox " value=" ">
+    <span class="form-check-sign ">
+    <span class="check "></span>
+    </span>
+    </label>
+    </div>
+    </td>
+    <td>Sign contract for "What are conference organizers afraid of? "</td>
+    <td class="td-actions text-right ">
+    <button mat-raised-button type="button " matTooltip="Edit Task " [matTooltipPosition]=" 'above' " class="btn btn-primary btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">edit</i>
+    </button>
+    <button mat-raised-button type="button " matTooltip="Remove " [matTooltipPosition]=" 'above' " class="btn btn-danger btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">close</i>
+    </button>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <div class="tab-pane " id="settings ">
+    <table class="table ">
+    <tbody>
+    <tr>
+    <td>
+    <div class="form-check ">
+    <label class="form-check-label ">
+    <input class="form-check-input " type="checkbox " value=" ">
+    <span class="form-check-sign ">
+    <span class="check "></span>
+    </span>
+    </label>
+    </div>
+    </td>
+    <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+    <td class="td-actions text-right ">
+    <button mat-raised-button type="button " matTooltip="Edit Task " [matTooltipPosition]=" 'above' " class="btn btn-primary btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">edit</i>
+    </button>
+    <button mat-raised-button type="button " matTooltip="Remove " [matTooltipPosition]=" 'above' " class="btn btn-danger btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">close</i>
+    </button>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="form-check ">
+    <label class="form-check-label ">
+    <input class="form-check-input " type="checkbox " value=" " checked>
+    <span class="form-check-sign ">
+    <span class="check "></span>
+    </span>
+    </label>
+    </div>
+    </td>
+    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+    </td>
+    <td class="td-actions text-right ">
+    <button mat-raised-button type="button " matTooltip="Edit Task " [matTooltipPosition]=" 'above' " class="btn btn-primary btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">edit</i>
+    </button>
+    <button mat-raised-button type="button " matTooltip="Remove " [matTooltipPosition]=" 'above' " class="btn btn-danger btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">close</i>
+    </button>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="form-check ">
+    <label class="form-check-label ">
+    <input class="form-check-input " type="checkbox " value=" " checked>
+    <span class="form-check-sign ">
+    <span class="check "></span>
+    </span>
+    </label>
+    </div>
+    </td>
+    <td>Sign contract for "What are conference organizers afraid of? "</td>
+    <td class="td-actions text-right ">
+    <button mat-raised-button type="button " matTooltip="Edit Task " [matTooltipPosition]=" 'above' " class="btn btn-primary btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">edit</i>
+    </button>
+    <button mat-raised-button type="button " matTooltip="Remove " [matTooltipPosition]=" 'above' " class="btn btn-danger btn-link btn-sm btn-just-icon ">
+    <i class="material-icons ">close</i>
+    </button>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>-->
+            <!-- Tabla ocultada momentaneamente-->
+            <!-- Tabla nuega agregada-->
+            <div class="col-lg-6 col-md-12 ">
+                <div class="card ">
+                    <div class="card-header card-header-warning card-ingreso">
+                        <h4 class="card-title ">Facturas</h4>
+                        <p class="card-category ">Listado de las &uacute;ltimas 5 facturas registradas.</p>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table style="width: 100%;font-size: 11px !important;" class="table table-hover">
+                            <thead class="text-warning ">
+                                <th>ID</th>
+                                <th>Proveedor</th>
+                                <th>Adquirente</th>
+                                <th>VNPP</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let fac of facturas">
+                                    <td>{{fac.idComprobante}}</td>
+                                    <td>{{fac.NombreProveedor}}</td>
+                                    <td>{{fac.NombreAdquirente}}</td>
+                                    <td style="text-align: right; padding-right: 3%;">{{fac.VNPP | number:'3.2-2'}}</td>
+                                </tr>
+                                <!-- <tr>
+                                        <td>2</td>
+                                        <td>Minerva Hooper</td>
+                                        <td>$23,789</td>
+                                        <td>Cura&ccedil;ao</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Sage Rodriguez</td>
+                                        <td>$56,142</td>
+                                        <td>Netherlands</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Philip Chaney</td>
+                                        <td>$38,735</td>
+                                        <td>Korea, South</td>
+                                    </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Termina tabla nueva agregada-->
+            <div class="col-lg-6 col-md-12 ">
+                <div class="card ">
+                    <div class="card-header card-header-warning ">
+                        <h4 class="card-title ">Contratos</h4>
+                        <p class="card-category ">Listado de los &uacute;ltimos 5 contratos elaborados.</p>
+                    </div>
+                    <div class="card-body table-responsive ">
+                        <table style="width: 100%;font-size: 11px !important;" class="table table-hover">
+                            <thead class="text-warning ">
+                                <th>ID</th>
+                                <th>Proveedor</th>
+                                <th>Adquirente</th>
+                                <th>Adelanto</th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let cont of contratos">
+                                    <td>{{cont.idContrato}}</td>
+                                    <td>{{cont.NombreProveedor}}</td>
+                                    <td>{{cont.NombreAdquirente}}</td>
+                                    <td style="text-align: right; padding-right: 3%;">{{cont.Adelanto | number:'3.2-2'}}</td>
+                                </tr>
+                                <!-- <tr>
+                                        <td>2</td>
+                                        <td>Minerva Hooper</td>
+                                        <td>$23,789</td>
+                                        <td>Cura&ccedil;ao</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Sage Rodriguez</td>
+                                        <td>$56,142</td>
+                                        <td>Netherlands</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Philip Chaney</td>
+                                        <td>$38,735</td>
+                                        <td>Korea, South</td>
+                                    </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-loading2 *ngIf=" loading "></app-loading2>

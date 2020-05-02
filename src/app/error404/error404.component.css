@@ -1,0 +1,24 @@
+.bg-error {
+    background-image: url(~/assets/img/imgInnova/body-bg-404.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-error h1 {
+    font-size: 102px;
+    text-shadow: 4px 4px 0 #e6e6e6, 6px 6px 0 #383e5d;
+    color: #f9a02c;
+    text-align: center;
+    margin-top: 150px;
+}
+
+.bg-error h4,
+.bg-error p {
+    font-size: 50px;
+    color: #f9a02c;
+    text-align: center;
+}
+
+.bg-capa {
+    background-color: rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,164 @@
+.form-login {
+    /* background-color: #EEEEEE; */
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    max-width: 400px;
+    margin: 10% auto 10% auto;
+    border-radius: 5px;
+    text-align: center;
+}
+.form-login img {
+    width: 100%;
+    margin: auto;
+    text-align: center; 
+    height: 100%;
+}
+
+.bg-login {
+    background-image: "";
+    /*  background-image: url(~/assets/img/imgInnova/fondo2.jpg);*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    overflow-y: hidden;
+    position: absolute;
+}
+.bg-login::before{
+    background-color: rgba(0,0,0,0.5);
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+.bg-capa {
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+.ruc {
+    cursor: not-allowed !important;
+    /* cursor: not-allowed; */
+    text-align: center;
+   /* font-weight: 900;*/
+    font-size: 1em;
+    color: #333;
+}
+
+.forget-password {
+    /*font-weight: 900;*/
+    color:#3dcdaf;
+    font-size: 0.8em;
+}
+
+.forget-password:hover {
+    /*font-weight: 900;*/
+    color:#3dcdaf;
+    font-size: 0.8em;
+    text-decoration: underline;
+}
+
+.label {
+    color: #333;
+    /*font-weight: 750;*/
+    font-size: 0.9em;
+}
+
+.input {
+    text-align: center;
+    color: #333;
+    /*font-weight: 900;*/
+    font-size: 0.9em;
+}
+
+@media screen and (max-width: 600px) {
+    /*.ruc {
+        cursor: not-allowed;
+        text-align: center;
+        font-weight: 900;
+        font-size: 0.9em;
+        color: #fff;
+    }
+    .forget-password {
+        font-weight: 900;
+        color: #333333;
+    }
+    .label {
+        color: #000;
+        font-weight: 750;
+        font-size: 1em;
+    }
+    .input {
+        text-align: center;
+        color: #fff;
+        font-weight: 900;
+        font-size: 0.9em;
+    }
+    .form-login {
+        background-color: transparent;
+        padding: 30px;
+        max-width: 400px;
+        margin: 10% auto 0 auto;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .bg-login {
+        background-image: url(assets/img/imgInnova/new-fondo3.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        overflow-y: hidden;
+    }*/
+}
+
+@media screen and (max-width: 321px) {
+  /*  .ruc {
+        cursor: not-allowed;
+        text-align: center;
+        font-weight: 900;
+        font-size: 0.9em;
+        color: #fff;
+    }
+    .forget-password {
+        font-weight: 900;
+        color: #333333;
+    }
+    .label {
+        color: #000;
+        font-weight: 750;
+        font-size: 1em;
+    }
+    .input {
+        text-align: center;
+        color: #fff;
+        font-weight: 900;
+        font-size: 0.9em;
+    }
+    .form-login {
+        background-color: transparent;
+        padding: 30px;
+        max-width: 400px;
+        margin: 10% auto 0 auto;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .bg-login {
+        background-image: url(assets/img/backblack.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        overflow-y: hidden;
+    }*/
+}
