@@ -8,6 +8,8 @@ import { LoginService } from '../services/login/login.service';
 })
 
 export class UsuarioComponent implements OnInit{
+    abrirRegistroUsuarios : boolean = false;
+    usuario : any;
 
     constructor(private loginservice:LoginService){
 
@@ -15,5 +17,14 @@ export class UsuarioComponent implements OnInit{
 
     ngOnInit(){
         
+    }
+
+    crearRegistroUsuarios(){
+        this.usuario = [];
+        this.abrirRegistroUsuarios = true;
+    }
+
+    CerrarPopUpRegUsuarios(Click:boolean){
+        this.abrirRegistroUsuarios = false;
     }
 }

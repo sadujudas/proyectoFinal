@@ -44,7 +44,7 @@ export class LoginService{
         let headers :  HttpHeaders = new HttpHeaders();
         headers =  headers.append('Content-Type', 'application/json');
         headers =  headers.append('Authorization', 'srvSeguridad');
-        return this.http.post(`http://localhost:2526/api-proyecto/EliminarUsuario`,body,{headers});
+        return this.http.post(`http://localhost:2526/api-proyecto/EliminarUsuario?usuarioId=${body}`,{headers});
     }
 
     ActualizarUsuario(body:any){

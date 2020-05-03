@@ -41,6 +41,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { RegistroUsuarioComponent } from '../../usuario/listado-usuario/registro-usuario/registro-usuario.component';
+import { SharedModule } from '../../shared/shared.module';
 
 
 @NgModule({
@@ -72,7 +74,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    SharedModule,
   ],
   exports:[
     MatFormFieldModule,
@@ -97,7 +100,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    SharedModule
   ],
   declarations: [
     DashboardComponent,
@@ -108,7 +112,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     NotificationsComponent,
     MapComponent,
     UsuarioComponent,
-    ListadoUsuarioComponent
+    ListadoUsuarioComponent,
+    RegistroUsuarioComponent
     // RtlComponent
   ]
 })

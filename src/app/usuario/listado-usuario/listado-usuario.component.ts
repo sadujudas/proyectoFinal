@@ -50,6 +50,7 @@ export class ListadoUsuarioComponent{
     filteredUsuario: any;
     value = '';
     nombre;
+    abrirRegistroUsuario :boolean = false;
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;  
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     pageSizeOptions = [15,20,30,50,100,200];
@@ -90,4 +91,71 @@ export class ListadoUsuarioComponent{
             }
         )
     }
+
+    editarUsuario(element){
+        this.usuario = element;
+        console.log("elment",element);
+        //this.flagDeudasDetalle=true;
+        this.abrirRegistroUsuario = true;
+    }
+
+    CerrarPopUpRegUsuarios(){
+        this.ListadoUsuarioFiltro();
+        console.log("cerrar en listado");
+        this.abrirRegistroUsuario = false;
+    }
+
+    EliminarUsuario(element){
+        console.log("baja=>",element);
+        this.usuarios = element
+    
+        Swal.fire({
+            title:'Anular Usuario',
+            html:'<span>¿Desea anular el usuario <b>'+element.usuarioNombre+'</b>?</span>',
+            icon: 'warning',
+            focusConfirm: false,
+            showCancelButton: true,
+            reverseButtons: true,
+            confirmButtonColor:'#FC3333',
+            cancelButtonColor:'#3351FC',
+            confirmButtonText:'Si,confirmar.',
+            cancelButtonText: 'No,Cancelar.'
+          }).then((result)=>{
+            if(result.value){
+            console.log("result=>",result.value)
+              Swal.fire({
+                title: '¡Espere!',
+                html: 'Procesando solicitud.'
+              })
+              Swal.showLoading();
+              console.log("res",this.usuarios.usuarioId)
+              this.LoginService.EliminarUsuario(this.usuarios.usuarioId).subscribe(
+                res =>{ 
+                    console.log("res",res)
+                  Swal.fire({
+                    title: '¡Usuario anulado!',
+                    text: 'El nro '+element.usuarioId+' ha sido anulada.',
+                    icon:'success'
+                }).then(resp =>{
+                      console.log("resp",resp.value)
+                    if(resp.value == true){
+                      Swal.close();
+                      this.ListadoUsuarioFiltro();
+                    }
+                  });
+                },
+                err =>{
+                    console.log("error",err)
+                  Swal.fire({
+                    title: "Error",
+                    text: 'No se pudo anular el usuario Nro '+element.usuarioId+'.',
+                    icon: "error",
+                    allowOutsideClick: false
+                  });
+                }
+              )}
+          });
+        }
+    
+    
 }

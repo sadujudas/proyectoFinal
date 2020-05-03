@@ -12,7 +12,7 @@
                             <div class="nav-tabs-wrapper"><span class="nav-tabs-title"> </span>
                                 <ul class="nav nav-tabs">
                                     <li class="nav-item"><a  class="nav-link " routerLinkActive="active" [routerLink]="['/usuario/listado']" ><i class="material-icons">list_alt</i> Usuarios <div class="ripple-container"></div></a></li>
-                                    <li class="nav-item"><a  class="nav-link" routerLinkActive="active"  ><i class="material-icons">add_box</i> Nuevo<div class="ripple-container"></div></a></li>
+                                    <li class="nav-item"><a  class="nav-link" (click)="crearRegistroUsuarios()" routerLinkActive="active"  ><i class="material-icons">add_box</i> Nuevo<div class="ripple-container"></div></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -27,3 +27,4 @@
         </div>
     </div>
 </div>
+<app-registro-usuario *ngIf="abrirRegistroUsuarios" (cerrarRegistroUsuarios)="CerrarPopUpRegUsuarios()"></app-registro-usuario>

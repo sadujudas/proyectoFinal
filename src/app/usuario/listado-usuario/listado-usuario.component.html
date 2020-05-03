@@ -19,8 +19,8 @@
         <ng-container  matColumnDef="checked">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Check</th>
             <td *matCellDef="let element" class="d-flex justify-content-center align-content-center" style="padding-top: 15px">
-                <span matTooltip="Visualizar"  [matTooltipPosition]="'above'"  class="font-20"><i style="color:rgb(26, 143, 36)"class="fa fa-eye" ></i></span>&nbsp;&nbsp;
-                <span matTooltip="Dar de baja" *ngIf= "element.Estado != 'B'" [matTooltipPosition]="'above'"  class="font-20"><i style="color:rgb(199, 17, 17)" class="fa fa-trash" ></i></span>&nbsp;&nbsp;
+                <span matTooltip="Visualizar"  [matTooltipPosition]="'above'" (click)="editarUsuario(element);" class="font-20"><i style="color:rgb(26, 143, 36)"class="fa fa-eye" ></i></span>&nbsp;&nbsp;
+                <span matTooltip="Dar de baja"  [matTooltipPosition]="'above'" (click)="EliminarUsuario(element);" class="font-20"><i style="color:rgb(199, 17, 17)" class="fa fa-trash" ></i></span>&nbsp;&nbsp;
             </td>
         </ng-container>
         <ng-container matColumnDef="usuarioId"  >
@@ -45,3 +45,4 @@
     <mat-paginator [pageSizeOptions]="pageSizeOptions"></mat-paginator>
 </div>
 <app-loading2 *ngIf="loading"></app-loading2>
+<app-registro-usuario *ngIf="abrirRegistroUsuario" [usuario]="usuario" (cerrarRegistroUsuarios)="CerrarPopUpRegUsuarios()"></app-registro-usuario>
