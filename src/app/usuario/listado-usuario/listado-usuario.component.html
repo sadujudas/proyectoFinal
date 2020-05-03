@@ -1,0 +1,19 @@
+<form class="form-i-container">
+    <div class="row">
+        <div class="col-xl-10 col-md-12">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <!--<input type="hidden" [(ngModel)]="DTOFiltroUsuario.nombre" name="DTOFiltroUsuario.nombre">-->
+                    <mat-form-field class="example-full-width">
+                        
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-12  col-md-12 col-lg-12 col-xl-2  d-flex align-items-center ">
+            <button class="btn btn-i-primary btn-block" (click)="ListadoUsuarioFiltro()" type="button" id="btnBuscarUsuario" >Buscar </button>
+        </div>
+    </div>
+</form>
+
+<app-loading2 *ngIf="loading"></app-loading2>

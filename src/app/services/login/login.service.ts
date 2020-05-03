@@ -16,7 +16,7 @@ export class LoginService{
         let headers :  HttpHeaders = new HttpHeaders();
         headers =  headers.append('Content-Type', 'application/json');
         headers =  headers.append('Authorization', 'srvSeguridad');
-        return this.http.get(`http://localhost:2526/api-proyecto/ListarUsuarios1?usuarioNombre=${filtros.usuario}`,{headers});
+        return this.http.get(`http://localhost:2526/api-proyecto/ListarUsuarios1?usuarioNombre=${filtros.nombre}`,{headers});
     }
 
     CrearUsuarios(body:any){

@@ -79,7 +79,7 @@
     "bn-ng-idle": "^1.0.1",
     "chart.js": "2.8.0",
     "chartist": "^0.11.4",
-    "core-js": "3.6.4",
+    "core-js": "^3.6.4",
     "ngx-mask": "^9.0.2",
     "ngx-toastr": "10.0.4",
     "rxjs": "^6.5.2",

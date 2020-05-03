@@ -1,68 +1,70 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { LoginService } from "../../services/login/login.service";
+import {HttpErrorResponse } from '@angular/common/http';
+import {  MessagesTitles,MessagesStatus } from '../../model/messages';
+import Swal from "sweetalert2";
+
 
 declare interface RouteInfo {
   path: string;
   title: string;
-  rtlTitle: string;
   icon: string;
   class: string;
+  submenuValor:string;
+  subMenu? : RouteInfo[];
+  id? : string;
+  target? : string;
+  controls? :string;
+  
 }
 export const ROUTES: RouteInfo[] = [
-  {
-    path: "/dashboard",
-    title: "Dashboard",
-    rtlTitle: "لوحة القيادة",
-    icon: "icon-chart-pie-36",
-    class: ""
-  },
+  {path: "/dashboard",title: "Dashboard",icon: "icon-chart-pie-36",class: "",submenuValor:"animals" ,subMenu :[]},
   {
     path: "/icons",
     title: "Alumnos",
-    rtlTitle: "الرموز",
     icon: "icon-atom",
-    class: ""
+    class: "",
+    submenuValor:"animals" ,subMenu:[]
   },
   {
     path: "/horarios",
     title: "Horarios",
-    rtlTitle: "خرائط",
     icon: "icon-pin",
-    class: "" },
+    class: "" ,
+    submenuValor:"animals" ,subMenu:[]
+  },
   {
     path: "/carreras",
     title: "Carreras",
-    rtlTitle: "إخطارات",
     icon: "icon-bell-55",
-    class: ""
+    class: "",
+    submenuValor:"animals" ,subMenu:[]
   },
 
-  {
-    path: "/usuarios",
-    title: "Usuarios",
-    rtlTitle: "ملف تعريفي للمستخدم",
-    icon: "icon-single-02",
-    class: ""
-  },
+  {path: "/usuario/listado",title: "Usuario",icon: "icon-single-02",class: "",submenuValor:"animals",subMenu:[
+    //{path: "/usuario/listado", title: "Listado", icon: "supervisor_account", class: "" ,submenuValor:"animals", id : "collapseOne" },
+  ]},
   {
     path: "/tables",
     title: "Table List",
-    rtlTitle: "قائمة الجدول",
     icon: "icon-puzzle-10",
-    class: ""
+    class: "",
+    submenuValor:"animals" ,subMenu:[]
   },
   {
     path: "/typography",
     title: "Typography",
-    rtlTitle: "طباعة",
     icon: "icon-align-center",
-    class: ""
+    class: "",
+    submenuValor:"animals" ,subMenu:[]
   },
   {
     path: "/rtl",
     title: "RTL Support",
-    rtlTitle: "ار تي ال",
     icon: "icon-world",
-    class: ""
+    class: "",
+    submenuValor:"animals" ,subMenu:[]
   }
 ];
 
@@ -74,7 +76,7 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   menuItems: any[];
 
-  constructor() {}
+  constructor(private router:Router) {}
 
   ngOnInit() {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
@@ -84,5 +86,10 @@ export class SidebarComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  CerrarSession() {
+  
+    this.router.navigate(["/login"]);
   }
 }

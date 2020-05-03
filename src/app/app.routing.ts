@@ -9,7 +9,7 @@ import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.compon
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 
 const routes: Routes = [
-  { path: "login", component:LoginComponent, },
+  { path: 'login', component:LoginComponent },
   { path: 'error404', component: Error404Component },
   {
     path: "",
@@ -31,8 +31,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: "**",
-    redirectTo: "dashboard"
+    path: '**',
+    redirectTo: '/error404',
+    pathMatch: 'full',
+   
   }
 ];
 

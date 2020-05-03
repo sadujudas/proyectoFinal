@@ -22,3 +22,40 @@
     </li>
   </ul>
 </div>
+
+<!--<div class="sidebar-wrapper">
+    <div *ngIf="isMobileMenu()">
+        <ul class="nav navbar-nav nav-mobile-menu mt-2">
+            <li class="nav-item ">
+                <a class="nav-link" id="navbarDropdownMenuLink" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="tim-icons ">person</i>
+                    <p><span class="d-lg-none d-md-block" (click)="CerrarSession()" href="javascript:void(0)">Cerrar Session</span></p>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <ul class="nav" id="accordionExample">
+      <li class="nav-item" routerLinkActive="active">
+        <a *ngIf="dashboard" class="nav-link" routerLink="/dashboard"><i class="tim-icons">icon-chart-pie-36</i><p>Dashboard</p> </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a *ngIf="empresas" class="nav-link" [matMenuTriggerFor]="empre" #matMenuTrigger="matMenuTrigger">
+            <i class="material-icons">location_city</i>
+            <p>Empresas<b class="caret"></b></p>
+        </a>
+
+        <mat-menu #empre="matMenu" xPosition="before" YPosition="below">
+            <a (click)="clickGuard()" *ngIf="proveedores" mat-menu-item routerLinkActive="active" routerLink="/empresas/proveedor/listado">
+                <i class="material-icons">supervisor_account</i>
+                <span>Proveedores</span>
+            </a>
+            <a (click)="clickGuard()" *ngIf="adquirente" mat-menu-item routerLinkActive="active" routerLink="/empresas/adquirente/listado">
+                <i class="material-icons">perm_identity</i>
+                <span>Adquirente</span>
+            </a>
+        </mat-menu>
+
+    </li>
+    </ul>
+</div>-->
+

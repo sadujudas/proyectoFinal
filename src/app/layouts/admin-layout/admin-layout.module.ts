@@ -12,6 +12,8 @@ import { NotificationsComponent } from "../../pages/notifications/notifications.
 import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 import { TypographyComponent } from "../../pages/typography/typography.component";
+import { UsuarioComponent } from '../../usuario/usuario.component';
+import { ListadoUsuarioComponent } from '../../usuario/listado-usuario/listado-usuario.component';
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
@@ -32,6 +34,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     TypographyComponent,
     NotificationsComponent,
     MapComponent,
+    UsuarioComponent,
+    ListadoUsuarioComponent
     // RtlComponent
   ]
 })

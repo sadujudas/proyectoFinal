@@ -1,3 +1,3 @@
 export class FiltroUsuario{
-    usuario: string = '';
+    nombre: string = '';
 }
