@@ -6,8 +6,8 @@ import { startWith, map } from 'rxjs/operators';
 import { FormControl, FormGroup, Validators, Form } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { DatePipe, formatCurrency } from "@angular/common";
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import Swal from "sweetalert2";
-import {DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS} from "@angular/material/esm2015";
 import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import { MessagesTitles, MessagesGeneral, MessagesDates } from '../../model/messages';
 import * as moment from 'moment';
@@ -33,13 +33,8 @@ export const MY_FORMATS = {
     templateUrl: './listado-usuario.component.html',
     styleUrls: ['./listado-usuario.component.scss'],
     providers: [MessagesTitles,MessagesGeneral,MessagesDates,DatePipe,
-        {
-            provide: DateAdapter,
-            useClass: MomentDateAdapter,
-            deps: [MAT_DATE_LOCALE]
-          },
-      
-          { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
+        
+         
     ]
 })
 
@@ -53,51 +48,25 @@ export class ListadoUsuarioComponent{
     usuariosArr;
     dni = new FormControl();
     filteredUsuario: any;
+    value = '';
     nombre;
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;  
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     pageSizeOptions = [15,20,30,50,100,200];
-    displayedColumns = []; 
+    displayedColumns = ['checked','usuarioId','usuarioNombre','usuarioDni','usuarioEmail']; 
     dataSource: any;
     constructor(private router:Router, private LoginService:LoginService,private datepipe :DatePipe){
 
     }
+    applyFilter(filterValue: string) {
+        console.log("valor",filterValue);
+        if(null != this.dataSource){
+           this.dataSource.filter = filterValue.trim().toLowerCase();
+        }
+    }
 
     ngOnInit(){}
 
-    private _filterUsu(value:string):any[]{
-        const filterValue = value.toString().toLocaleLowerCase();
-        console.log("var",value);
-        return this.usuariosArr.filter(state => state.usuarioDni.toLocaleLowerCase().includes(filterValue) === true);
-    }
-
-    ObtenerUsuarioCombo(){
-        this.filteredUsuario = this.dni.valueChanges
-        .pipe(
-            startWith(""),
-            map(state =>
-                state ? this._filterUsu(state):this.filteredUsuario.slice()
-            )
-        );
-    }
-
-    obtenerNomUsu(termino:string){
-        this.nombre = termino;
-        this.DTOFiltroUsuario.nombre = termino;
-    }
-
-    EnteroDni(termino:string = ''){
-        if(termino != null && termino != ''){
-            let termino1 = termino.toLowerCase();
-            for(let p of this.usuariosArr){
-                let raz = p.usuarioDni.toLocaleLowerCase();
-              if(raz.indexOf(termino1) >=0){
-                this.dni = p.usuarioDni;
-                this.DTOFiltroUsuario.nombre = p.usuarioNombre;
-              }
-            }
-          }
-    }
 
     ListadoUsuarioFiltro(){
         this.loading = true;

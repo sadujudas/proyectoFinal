@@ -2,18 +2,46 @@
     <div class="row">
         <div class="col-xl-10 col-md-12">
             <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                    <!--<input type="hidden" [(ngModel)]="DTOFiltroUsuario.nombre" name="DTOFiltroUsuario.nombre">-->
-                    <mat-form-field class="example-full-width">
-                        
-                    </mat-form-field>
-                </div>
             </div>
         </div>
         <div class=" col-sm-12  col-md-12 col-lg-12 col-xl-2  d-flex align-items-center ">
-            <button class="btn btn-i-primary btn-block" (click)="ListadoUsuarioFiltro()" type="button" id="btnBuscarUsuario" >Buscar </button>
-        </div>
+            <button class="btn btn-i-primary btn-block" (click)="ListadoUsuarioFiltro()" type="button" id="btnBuscarUsuario" >Buscar</button>
+        </div> 
     </div>
 </form>
-
+<hr/>
+<div class="table-responsive">
+    <mat-form-field style="width: 50%">
+        <input matInput (keyup)="applyFilter($event.target.value)" style="text-transform:uppercase; font-size: larger;" placeholder="Filtrar" [(ngModel)]="value">
+        <span matSuffix style="cursor: pointer" *ngIf="value" (click)="value='';applyFilter('')"><i class="fa fa-trash-o"></i></span>
+    </mat-form-field>
+    <table style="width: 100%;font-size: 11px !important;" mat-table [dataSource]="dataSource" matSort class="table table-striped">
+        <ng-container  matColumnDef="checked">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Check</th>
+            <td *matCellDef="let element" class="d-flex justify-content-center align-content-center" style="padding-top: 15px">
+                <span matTooltip="Visualizar"  [matTooltipPosition]="'above'"  class="font-20"><i style="color:rgb(26, 143, 36)"class="fa fa-eye" ></i></span>&nbsp;&nbsp;
+                <span matTooltip="Dar de baja" *ngIf= "element.Estado != 'B'" [matTooltipPosition]="'above'"  class="font-20"><i style="color:rgb(199, 17, 17)" class="fa fa-trash" ></i></span>&nbsp;&nbsp;
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="usuarioId"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Nro de Usuario </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuarioId}} </td>
+        </ng-container>
+        <ng-container matColumnDef="usuarioNombre"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Usuario </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuarioNombre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="usuarioDni"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > DNI </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuarioDni}} </td>
+        </ng-container>
+        <ng-container matColumnDef="usuarioEmail">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Email </th>
+            <td mat-cell *matCellDef="let element"> {{element.usuarioEmail}} </td>
+        </ng-container>    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="pageSizeOptions"></mat-paginator>
+</div>
 <app-loading2 *ngIf="loading"></app-loading2>

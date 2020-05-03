@@ -21,7 +21,8 @@ export class AppComponent {
   title = "black-dashboard-angular";
 
   constructor(private bnIdle: BnNgIdleService,
-    private router: Router,){
+    private router: Router,
+    public sessionTimer: SessionTimerService,){
       this.bnIdle.startWatching(6000).subscribe(res => {
         if (res) {
           console.log("session expired");
@@ -37,5 +38,10 @@ export class AppComponent {
           });
         }
       }); 
+    }
+    ngOnInit(){
+     
+
+    
     }
 }
