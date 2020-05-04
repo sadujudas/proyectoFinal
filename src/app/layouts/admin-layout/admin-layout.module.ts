@@ -46,7 +46,9 @@ import { SharedModule } from '../../shared/shared.module';
 import { AlumnoComponent } from '../../alumno/alumno.component';
 import { ListadoAlumnoComponent } from '../../alumno/listado-alumno/listado-alumno.component';
 import { RegistroAlumnoComponent } from '../../alumno/listado-alumno/registro-alumno/registro-alumno.component';
-
+import { HorarioComponent } from '../../horario/horario.component';
+import { ListadoHorarioComponent } from '../../horario/listado-horario/listado-horario.component';
+import { RegistroHorarioComponent } from '../../horario/listado-horario/registro-horario/registro-horario.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -118,7 +120,10 @@ import { RegistroAlumnoComponent } from '../../alumno/listado-alumno/registro-al
     RegistroUsuarioComponent,
     AlumnoComponent,
     ListadoAlumnoComponent,
-    RegistroAlumnoComponent
+    RegistroAlumnoComponent,
+    HorarioComponent,
+    ListadoHorarioComponent,
+    RegistroHorarioComponent
     // RtlComponent
   ]
 })

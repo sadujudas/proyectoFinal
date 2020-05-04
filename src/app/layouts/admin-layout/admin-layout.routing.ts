@@ -13,6 +13,10 @@ import { RegistroUsuarioComponent } from '../../usuario/listado-usuario/registro
 import { AlumnoComponent } from '../../alumno/alumno.component';
 import { ListadoAlumnoComponent } from '../../alumno/listado-alumno/listado-alumno.component';
 import { RegistroAlumnoComponent } from '../../alumno/listado-alumno/registro-alumno/registro-alumno.component';
+import { HorarioComponent } from '../../horario/horario.component';
+import { ListadoHorarioComponent } from '../../horario/listado-horario/listado-horario.component';
+import { RegistroHorarioComponent } from '../../horario/listado-horario/registro-horario/registro-horario.component';
+  import { from } from 'rxjs';
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 export const AdminLayoutRoutes: Routes = [
@@ -24,9 +28,14 @@ export const AdminLayoutRoutes: Routes = [
   },
   { path: "alumno", component: AlumnoComponent, 
   children: [
-    {path:'listado',component: ListadoAlumnoComponent}
+    {path:"listado",component: ListadoAlumnoComponent}
   ]
-},
+  },
+  { path: "horario", component: HorarioComponent,
+  children: [
+    {path:"listado",component: ListadoHorarioComponent}
+  ]
+   },
   { path: "icons", component: IconsComponent },
   { path: "maps", component: MapComponent },
   { path: "notifications", component: NotificationsComponent },

@@ -28,7 +28,7 @@ export const ROUTES: RouteInfo[] = [
     submenuValor:"animals" ,subMenu:[]
   },
   {
-    path: "/horarios",
+    path: "/horario/listado",
     title: "Horarios",
     icon: "icon-pin",
     class: "" ,

@@ -1,0 +1,30 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class=" d-flex justify-content-start align-content-start">
+
+            <h3 style="font-weight: 900">Horarios</h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-tabs card-header-warning">
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper"><span class="nav-tabs-title"> </span>
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a  class="nav-link " routerLinkActive="active" [routerLink]="['/horario/listado']" ><i class="material-icons">list_alt</i> Horarios <div class="ripple-container"></div></a></li>
+                                    <li class="nav-item"><a  class="nav-link" (click)="crearRegistroHorarios()" routerLinkActive="active"  ><i class="material-icons">add_box</i> Nuevo<div class="ripple-container"></div></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <router-outlet></router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-registro-horario *ngIf="abrirRegistroHorarios" (cerrarRegistroHorarios)="CerrarPopUpRegHorarios()"></app-registro-horario>

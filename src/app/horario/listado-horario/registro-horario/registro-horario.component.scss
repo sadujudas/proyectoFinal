@@ -1,0 +1,88 @@
+.fondo {
+    background-color: rgba(124, 122, 115, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    overflow-y: scroll;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.card-header>p {
+    color: #fff !important;
+}
+
+.card [class*="card-header-"]:not(.card-header-icon):not(.card-header-text):not(.card-header-image) {
+    border-radius: 0px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-top: -20px;
+    padding: 15px;
+}
+
+.card [class*="card-header-"] {
+    margin: 0px 0px 0;
+    padding: 0;
+    position: relative;
+}
+
+.card-header-contact {
+    background: linear-gradient(60deg, #6675bb, #394e8c);
+}
+
+.main-content {
+    margin-top: 150px;
+    padding: 30px 15px;
+    min-height: calc(100vh - 123px);
+}
+
+div .mat-horizontal-stepper-header {
+    display: flex;
+    height: 72px;
+    overflow: hidden;
+    align-items: center;
+    padding: 0px;
+    margin: -6px !important;
+}
+
+@media (max-width: 600px) {
+    .main-content {
+        margin-top: 0px;
+        padding: 30px 15px;
+        min-height: calc(100vh - 123px);
+    }
+    div .mat-horizontal-stepper-header {
+        display: flex;
+        height: 72px;
+        overflow: hidden;
+        align-items: center;
+        padding: 0px;
+        margin: -6px !important;
+    }
+}
+
+.mat-sort-header-container {   
+    margin-left: 40%;
+    transform: translateX(-50%);
+}    
+
+.card .card-header-primary .card-icon, .card .card-header-primary .card-text, .card .card-header-primary:not(.card-header-icon):not(.card-header-text), .card.bg-primary, .card.card-rotate.bg-primary .front, .card.card-rotate.bg-primary .back {
+    background:linear-gradient(60deg,  #61d282, #3fb162c9);
+}
+.card .card-header-primary .card-icon, .card .card-header-primary:not(.card-header-icon):not(.card-header-text), .card .card-header-primary .card-text {
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(127, 228, 133, 0.4);
+}
+.text-warning {
+    color: #16581e !important;
+}
+.card-header-contact {
+    background: linear-gradient(80deg, #662d91, #21409a);
+}
