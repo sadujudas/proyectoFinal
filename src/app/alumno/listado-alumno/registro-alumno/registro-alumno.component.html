@@ -1,0 +1,62 @@
+<div class="fondo animated fadeIn">
+    <div class="main-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-contact">
+                            <div class="col-md-12">
+                                <h4 class="card-title">{{titulo}}</h4>
+                            </div>
+                            <div class="col-md-12" [hidden]="!flagCreateUpdate">
+                                <span class="card-title"><b>{{subtitulo}}</b></span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <form [formGroup]="formularioCrearAlumno" (keydown.enter)="$event.preventDefault()" (ngSubmit)="crearAlumno()" novalidate >
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Nombre"  type="text" formControlName="Nom_alumno">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Apellido"  type="text" formControlName="Ape_alumno">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Dni"  type="text" formControlName="Dni">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput placeholder="Edad"  type="text" formControlName="Edad">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success animated fadeInDown text-center" *ngIf="save" role="alert">
+                                            ¡Alumno registrado con éxito!
+                                        </div>
+                                    </div>
+                                </div>
+                                <button mat-raised-button type="button" (click)="CerrarPopUp()" class="btn btn-i-primary" [ngClass]="{ 'pull-left' : !save , 'pull-right' : save }">Cerrar</button>
+                                <button mat-raised-button [disabled]="loading" type="submit" *ngIf="!save" class="btn btn-i-success  pull-right">
+                                <span *ngIf="!loading">  Guardar  </span> &nbsp;
+                                <span *ngIf="loading"> Espere... </span>&nbsp;
+                                <i [ngClass]="{ 'fa-spinner fa-spin' : loading  , 'fa-save' : !loading }" class="fa  "></i>
+                            </button>
+                            <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

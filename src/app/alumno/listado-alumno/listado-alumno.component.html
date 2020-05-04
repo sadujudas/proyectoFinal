@@ -1,0 +1,56 @@
+<form class="form-i-container">
+    <div class="row">
+        <div class="col-xl-10 col-md-12">
+            <div class="row">
+            </div>
+        </div>
+        <div class=" col-sm-12  col-md-12 col-lg-12 col-xl-2  d-flex align-items-center ">
+            <button class="btn btn-i-primary btn-block" (click)="ListadoAlumnoFiltro()" type="button" id="btnBuscarAlumno" >Actualizar</button>
+        </div> 
+    </div>
+</form>
+<hr/>
+<div class="table-responsive">
+    <mat-form-field style="width: 50%">
+        <input matInput (keyup)="applyFilter($event.target.value)" style="text-transform:uppercase; font-size: larger;" placeholder="Filtrar" [(ngModel)]="value">
+        <span matSuffix style="cursor: pointer" *ngIf="value" (click)="value='';applyFilter('')"><i class="fa fa-trash-o"></i></span>
+    </mat-form-field>
+    <table sstyle="width: 100%;font-size: 11px !important;" mat-table [dataSource]="dataSource" matSort class="table table-striped">
+        <ng-container  matColumnDef="checked">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Check</th>
+            <td *matCellDef="let element" class="d-flex justify-content-center align-content-center" style="padding-top: 15px">
+                <span matTooltip="Visualizar"  [matTooltipPosition]="'above'" (click)="editarAlumno(element);" class="font-20"><i style="color:rgb(26, 143, 36)"class="fa fa-eye" ></i></span>&nbsp;&nbsp;
+                <span matTooltip="Dar de baja"  [matTooltipPosition]="'above'" (click)="EliminarAlumno(element);" class="font-20"><i style="color:rgb(199, 17, 17)" class="fa fa-trash" ></i></span>&nbsp;&nbsp;
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="Alumnoid"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Nro de Alumno </th>
+            <td mat-cell *matCellDef="let element"> {{element.Alumnoid}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Nom_alumno"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Nombre del Alumno </th>
+            <td mat-cell *matCellDef="let element"> {{element.Nom_alumno}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Ape_alumno"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > apellido del Alumno </th>
+            <td mat-cell *matCellDef="let element"> {{element.Ape_alumno}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Dni"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Dni del Alumno </th>
+            <td mat-cell *matCellDef="let element"> {{element.Dni}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Edad"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Edad del Alumno </th>
+            <td mat-cell *matCellDef="let element"> {{element.Edad}} </td>
+        </ng-container>
+        <ng-container matColumnDef="codigo"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Codigo del Alumno </th>
+            <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="pageSizeOptions"></mat-paginator>
+</div>
+<app-loading2 *ngIf="loading"></app-loading2>
+<app-registro-alumno *ngIf="abrirRegistroAlumno" [alumno]="alumno" (cerrarRegistroAlumnos)="CerrarPopUpRegAlumnos()"></app-registro-alumno>

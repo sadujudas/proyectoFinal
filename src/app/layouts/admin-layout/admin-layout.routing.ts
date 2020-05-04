@@ -10,6 +10,9 @@ import { TypographyComponent } from "../../pages/typography/typography.component
 import { UsuarioComponent } from '../../usuario/usuario.component';
 import { ListadoUsuarioComponent } from '../../usuario/listado-usuario/listado-usuario.component';
 import { RegistroUsuarioComponent } from '../../usuario/listado-usuario/registro-usuario/registro-usuario.component';
+import { AlumnoComponent } from '../../alumno/alumno.component';
+import { ListadoAlumnoComponent } from '../../alumno/listado-alumno/listado-alumno.component';
+import { RegistroAlumnoComponent } from '../../alumno/listado-alumno/registro-alumno/registro-alumno.component';
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 export const AdminLayoutRoutes: Routes = [
@@ -19,6 +22,11 @@ export const AdminLayoutRoutes: Routes = [
       {path:'listado',component: ListadoUsuarioComponent}
     ]
   },
+  { path: "alumno", component: AlumnoComponent, 
+  children: [
+    {path:'listado',component: ListadoAlumnoComponent}
+  ]
+},
   { path: "icons", component: IconsComponent },
   { path: "maps", component: MapComponent },
   { path: "notifications", component: NotificationsComponent },

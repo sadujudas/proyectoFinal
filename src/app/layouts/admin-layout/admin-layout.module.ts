@@ -43,7 +43,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { RegistroUsuarioComponent } from '../../usuario/listado-usuario/registro-usuario/registro-usuario.component';
 import { SharedModule } from '../../shared/shared.module';
-
+import { AlumnoComponent } from '../../alumno/alumno.component';
+import { ListadoAlumnoComponent } from '../../alumno/listado-alumno/listado-alumno.component';
+import { RegistroAlumnoComponent } from '../../alumno/listado-alumno/registro-alumno/registro-alumno.component';
 
 @NgModule({
   imports: [
@@ -113,7 +115,10 @@ import { SharedModule } from '../../shared/shared.module';
     MapComponent,
     UsuarioComponent,
     ListadoUsuarioComponent,
-    RegistroUsuarioComponent
+    RegistroUsuarioComponent,
+    AlumnoComponent,
+    ListadoAlumnoComponent,
+    RegistroAlumnoComponent
     // RtlComponent
   ]
 })

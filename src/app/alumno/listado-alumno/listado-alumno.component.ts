@@ -11,9 +11,9 @@ import Swal from "sweetalert2";
 import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import { MessagesTitles, MessagesGeneral, MessagesDates } from '../../model/messages';
 import * as moment from 'moment';
-import { FiltroUsuario } from 'src/app/model/filtroUsuario';
-import { LoginService } from 'src/app/services/login/login.service';
 import { state } from '@angular/animations';
+import { FiltroAlumno } from 'src/app/model/FiltroAlumno';
+import { AlumnoService } from '../../services/alumno/alumno.service';
 
 
 export const MY_FORMATS = {
@@ -28,35 +28,35 @@ export const MY_FORMATS = {
     }
 };
 
+
 @Component({
-    selector: 'app-listado-usuario',
-    templateUrl: './listado-usuario.component.html',
-    styleUrls: ['./listado-usuario.component.scss'],
+    selector: 'app-listado-alumno',
+    templateUrl: './listado-alumno.component.html',
+    styleUrls: ['./listado-alumno.component.scss'],
     providers: [MessagesTitles,MessagesGeneral,MessagesDates,DatePipe,
         
          
     ]
 })
 
-export class ListadoUsuarioComponent{
-    DTOFiltroUsuario : FiltroUsuario = new FiltroUsuario();
+export class ListadoAlumnoComponent{
+    DTOFiltroAlumno : FiltroAlumno = new FiltroAlumno();
     today = moment();
     loading:boolean;
     data : any =  [];
-    usuario : any = [];
-    usuarios: any = [];
-    usuariosArr;
-    dni = new FormControl();
-    filteredUsuario: any;
+    alumno : any = [];
+    alumnos: any = [];
+    
     value = '';
-    nombre;
-    abrirRegistroUsuario :boolean = false;
+    
+    abrirRegistroAlumno :boolean = false;
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;  
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     pageSizeOptions = [15,20,30,50,100,200];
-    displayedColumns = ['checked','usuarioId','usuarioNombre','usuarioDni','usuarioEmail']; 
-    dataSource: any;
-    constructor(private router:Router, private LoginService:LoginService,private datepipe :DatePipe){
+    displayedColumns = ['checked','Alumnoid','Nom_alumno','Ape_alumno','Dni','Edad','codigo'];
+    dataSource:any;
+
+    constructor(private router:Router, private AlumnoService:AlumnoService,private datepipe :DatePipe){
 
     }
     applyFilter(filterValue: string) {
@@ -67,22 +67,23 @@ export class ListadoUsuarioComponent{
     }
 
     ngOnInit(){
-      this.ListadoUsuarioFiltro()
+
+      this.ListadoAlumnoFiltro();
     }
 
-
-    ListadoUsuarioFiltro(){
+    ListadoAlumnoFiltro(){
         this.loading = true;
-        console.log('this.DTOFiltroUsuario',this.DTOFiltroUsuario)
-        this.LoginService.ListarUsuarios(this.DTOFiltroUsuario).subscribe(
+        console.log('this.DTOFiltroAlumno',this.DTOFiltroAlumno)
+        this.AlumnoService.ListarAlumnos(this.DTOFiltroAlumno).subscribe(
             res=>{
-                this.usuarios = res;
-                console.log('this.usuarios',this.usuarios)
-                this.dataSource = new MatTableDataSource(this.usuarios);
+                this.alumnos = res;
+                console.log('this.alumnos',this.alumnos)
+                this.dataSource = new MatTableDataSource(this.alumnos);
                 this.dataSource.sort = this.sort;
                 this.dataSource.paginator = this.paginator;
                 this.loading = false;
             },err =>{
+              console.log('Error',err)
                 Swal.fire({
                     title: "¡Algo salió mal!",
                     text:  err.error['error'],
@@ -94,26 +95,27 @@ export class ListadoUsuarioComponent{
         )
     }
 
-    editarUsuario(element){
-        this.usuario = element;
+    editarAlumno(element){
+        this.alumno = element;
         console.log("elment",element);
         //this.flagDeudasDetalle=true;
-        this.abrirRegistroUsuario = true;
+        this.abrirRegistroAlumno = true;
     }
 
-    CerrarPopUpRegUsuarios(){
-        this.ListadoUsuarioFiltro();
+
+    CerrarPopUpRegAlumnos(){
+        this.ListadoAlumnoFiltro();
         console.log("cerrar en listado");
-        this.abrirRegistroUsuario = false;
+        this.abrirRegistroAlumno = false;
     }
 
-    EliminarUsuario(element){
+    EliminarAlumno(element){
         console.log("baja=>",element);
-        this.usuarios = element
+        this.alumnos = element
     
         Swal.fire({
-            title:'Anular Usuario',
-            html:'<span>¿Desea anular el usuario <b>'+element.usuarioNombre+'</b>?</span>',
+            title:'Anular alumno',
+            html:'<span>¿Desea anular el alumno <b>'+element.Nom_alumno+'</b>?</span>',
             icon: 'warning',
             focusConfirm: false,
             showCancelButton: true,
@@ -130,19 +132,19 @@ export class ListadoUsuarioComponent{
                 html: 'Procesando solicitud.'
               })
               Swal.showLoading();
-              console.log("res",this.usuarios.usuarioId)
-              this.LoginService.EliminarUsuario(this.usuarios.usuarioId).subscribe(
+              console.log("res",this.alumnos.Alumnoid)
+              this.AlumnoService.EliminarAlumno(this.alumnos.Alumnoid).subscribe(
                 res =>{ 
                     console.log("res",res)
                   Swal.fire({
-                    title: '¡Usuario anulado!',
-                    text: 'El nro '+element.usuarioId+' ha sido anulada.',
+                    title: '¡Alumno anulado!',
+                    text: 'El nro '+element.Alumnoid+' ha sido anulado.',
                     icon:'success'
                 }).then(resp =>{
                       console.log("resp",resp.value)
                     if(resp.value == true){
                       Swal.close();
-                      this.ListadoUsuarioFiltro();
+                      this.ListadoAlumnoFiltro();
                     }
                   });
                 },
@@ -150,7 +152,7 @@ export class ListadoUsuarioComponent{
                     console.log("error",err)
                   Swal.fire({
                     title: "Error",
-                    text: 'No se pudo anular el usuario Nro '+element.usuarioId+'.',
+                    text: 'No se pudo anular el Alumno Nro '+element.Alumnoid+'.',
                     icon: "error",
                     allowOutsideClick: false
                   });
@@ -158,6 +160,5 @@ export class ListadoUsuarioComponent{
               )}
           });
         }
-    
-    
+
 }
