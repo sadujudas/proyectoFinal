@@ -16,6 +16,9 @@ import { RegistroAlumnoComponent } from '../../alumno/listado-alumno/registro-al
 import { HorarioComponent } from '../../horario/horario.component';
 import { ListadoHorarioComponent } from '../../horario/listado-horario/listado-horario.component';
 import { RegistroHorarioComponent } from '../../horario/listado-horario/registro-horario/registro-horario.component';
+import { CarreraComponent } from '../../carrera/carrera.component';
+import { ListadoCarreraComponent } from '../../carrera/listado-carrera/listado-carrera.component';
+import { RegistroCarreraComponent } from '../../carrera/listado-carrera/registro-carrera/registro-carrera.component';
   import { from } from 'rxjs';
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
@@ -36,6 +39,11 @@ export const AdminLayoutRoutes: Routes = [
     {path:"listado",component: ListadoHorarioComponent}
   ]
    },
+  { path: "carrera", component: CarreraComponent,
+  children: [
+    {path:"listado",component: ListadoCarreraComponent}
+  ]
+ },
   { path: "icons", component: IconsComponent },
   { path: "maps", component: MapComponent },
   { path: "notifications", component: NotificationsComponent },

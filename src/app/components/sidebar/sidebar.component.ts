@@ -35,7 +35,7 @@ export const ROUTES: RouteInfo[] = [
     submenuValor:"animals" ,subMenu:[]
   },
   {
-    path: "/carreras",
+    path: "/carrera/listado",
     title: "Carreras",
     icon: "icon-bell-55",
     class: "",
