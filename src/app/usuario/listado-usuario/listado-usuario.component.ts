@@ -54,12 +54,12 @@ export class ListadoUsuarioComponent{
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;  
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     pageSizeOptions = [15,20,30,50,100,200];
-    displayedColumns = ['checked','usuarioId','usuarioNombre','usuarioDni','usuarioEmail']; 
+    displayedColumns = ['checked','usuarioId','usuarioNombre','usuarioDni','usuarioEmail']; //Aqui se obtiene la informacion por columnas
     dataSource: any;
     constructor(private router:Router, private LoginService:LoginService,private datepipe :DatePipe){
 
     }
-    applyFilter(filterValue: string) {
+    applyFilter(filterValue: string) {//Comando que sirve para poder hacer los filtros
         console.log("valor",filterValue);
         if(null != this.dataSource){
            this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -71,7 +71,7 @@ export class ListadoUsuarioComponent{
     }
 
 
-    ListadoUsuarioFiltro(){
+    ListadoUsuarioFiltro(){//Comando que hace que puedas decidir que tabla se hara el filtro
         this.loading = true;
         console.log('this.DTOFiltroUsuario',this.DTOFiltroUsuario)
         this.LoginService.ListarUsuarios(this.DTOFiltroUsuario).subscribe(
@@ -101,7 +101,7 @@ export class ListadoUsuarioComponent{
         this.abrirRegistroUsuario = true;
     }
 
-    CerrarPopUpRegUsuarios(){
+    CerrarPopUpRegUsuarios(){//Cierra la ventana del listado
         this.ListadoUsuarioFiltro();
         console.log("cerrar en listado");
         this.abrirRegistroUsuario = false;
@@ -111,7 +111,7 @@ export class ListadoUsuarioComponent{
         console.log("baja=>",element);
         this.usuarios = element
     
-        Swal.fire({
+        Swal.fire({//Aqui ponemos una aviso de confirmacion antes que se elimine un dato
             title:'Anular Usuario',
             html:'<span>¿Desea anular el usuario <b>'+element.usuarioNombre+'</b>?</span>',
             icon: 'warning',
@@ -146,7 +146,7 @@ export class ListadoUsuarioComponent{
                     }
                   });
                 },
-                err =>{
+                err =>{//Mensaje en caso de que no se pudo eliminar el usuario
                     console.log("error",err)
                   Swal.fire({
                     title: "Error",
