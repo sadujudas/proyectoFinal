@@ -2,6 +2,22 @@
     <div class="row">
         <div class="col-xl-10 col-md-12">
             <div class="row">
+                <div class="col-md-6 ">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Estado</mat-label>
+                        <mat-select [(ngModel)]="DTOFiltroCarrera.estado" name="DTOFiltroCarrera.estado" >
+                            <mat-option value="H">
+                                Habilitado
+                            </mat-option>
+                            <mat-option value="D">
+                                Deshabilitado
+                            </mat-option>
+                            <mat-option value="">
+                                Todos
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
             </div>
         </div>
         <div class=" col-sm-12  col-md-12 col-lg-12 col-xl-2  d-flex align-items-center ">
@@ -13,14 +29,15 @@
 <div class="table-responsive">
     <mat-form-field style="width: 50%">
         <input matInput (keyup)="applyFilter($event.target.value)" style="text-transform:uppercase; font-size: larger;" placeholder="Filtrar" [(ngModel)]="value">
-        <span matSuffix style="cursor: pointer" *ngIf="value" (click)="value='';applyFilter('')"><i class="fa fa-trash-o"></i></span>
+        <span matSuffix style="cursor: pointer" *ngIf="value" (click)="value='';applyFilter('')"><i class="fas fa-trash-alt"></i></span>
     </mat-form-field>
-    <table sstyle="width: 100%;font-size: 11px !important;" mat-table [dataSource]="dataSource" matSort class="table table-striped">
+    <table style="width: 100%;font-size: 11px !important;" mat-table [dataSource]="dataSource" matSort class="table tablesorter">
         <ng-container  matColumnDef="checked">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Check</th>
             <td *matCellDef="let element" class="d-flex justify-content-center align-content-center" style="padding-top: 15px">
-                <span matTooltip="Visualizar"  [matTooltipPosition]="'above'" (click)="editarCarrera(element);" class="font-20"><i style="color:rgb(26, 143, 36)"class="fa fa-eye" ></i></span>&nbsp;&nbsp;
-                <span matTooltip="Dar de baja" *ngIf= "element.estado != 'D'" [matTooltipPosition]="'above'" (click)="DeshabilitarCarrera(element);" class="font-20"><i style="color:rgb(199, 17, 17)" class="fa fa-trash" ></i></span>&nbsp;&nbsp;
+                <span matTooltip="Editar"  *ngIf= "element.estado != 'D'" [matTooltipPosition]="'above'" (click)="editarCarrera(element);" class="font-20"><i style="color:rgb(26, 143, 36)"class="fa fa-eye" ></i></span>&nbsp;&nbsp;
+                <span matTooltip="Deshabilitar" *ngIf= "element.estado != 'D'" [matTooltipPosition]="'above'" (click)="DeshabilitarCarrera(element);" class="font-20"><i style="color:rgb(199, 17, 17)" class="fa fa-trash" ></i></span>&nbsp;&nbsp;
+                <span matTooltip="Habilitar" *ngIf= "element.estado != 'H'" [matTooltipPosition]="'above'" (click)="habilitarCarrera(element);" class="font-20"><i style="color:blue" class="fa fa-check-square" ></i></span>&nbsp;&nbsp;
             </td>
         </ng-container>
         <ng-container matColumnDef="carreraid"  >

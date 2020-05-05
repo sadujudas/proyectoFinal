@@ -13,6 +13,7 @@ import { MessagesTitles, MessagesGeneral, MessagesDates } from '../../model/mess
 import * as moment from 'moment';
 import { state } from '@angular/animations';
 import { CarreraService } from 'src/app/services/carrera/carrera.service';
+import { FiltroCarrera } from 'src/app/model/FiltroCarrera';
 
 
 export const MY_FORMATS = {
@@ -38,6 +39,7 @@ export const MY_FORMATS = {
 })
 
 export class ListadoCarreraComponent{
+    DTOFiltroCarrera: FiltroCarrera = new FiltroCarrera();
 
     today = moment();
     loading:boolean;
@@ -69,8 +71,8 @@ export class ListadoCarreraComponent{
 
     ListadoCarreraFiltro(){
         this.loading = true;
-        
-        this.CarreraService.ListarCarreras().subscribe(
+        console.log('this.DTOFiltroCarrera',this.DTOFiltroCarrera)
+        this.CarreraService.ListarCarreras(this.DTOFiltroCarrera).subscribe(
             res=>{
                 this.carreras = res;
                 console.log('this.carreras',this.carreras)
@@ -147,7 +149,7 @@ export class ListadoCarreraComponent{
                     console.log("error",err)
                   Swal.fire({
                     title: "Error",
-                    text: 'No se pudo deshbilitar la carrera Nro '+element.carreraid+'.',
+                    text: 'No se pudo deshabilitar la carrera Nro '+element.carreraid+'.',
                     icon: "error",
                     allowOutsideClick: false
                   });
@@ -155,6 +157,58 @@ export class ListadoCarreraComponent{
               )}
           });
         }
+
+        habilitarCarrera(element){
+          console.log("habilitar=>",element);
+          this.carreras = element
+      
+          Swal.fire({
+              title:'habilitar Carrera',
+              html:'<span>¿Desea habilitar la carrera <b>'+element.Nom_carrera+'</b>?</span>',
+              icon: 'warning',
+              focusConfirm: false,
+              showCancelButton: true,
+              reverseButtons: true,
+              confirmButtonColor:'#FC3333',
+              cancelButtonColor:'#3351FC',
+              confirmButtonText:'Si,confirmar.',
+              cancelButtonText: 'No,Cancelar.'
+            }).then((result)=>{
+              if(result.value){
+              console.log("result=>",result.value)
+                Swal.fire({
+                  title: '¡Espere!',
+                  html: 'Procesando solicitud.'
+                })
+                Swal.showLoading();
+                console.log("res",this.carreras.carreraid)
+                this.CarreraService.HabilitarCarrera(this.carreras.carreraid).subscribe(
+                  res =>{ 
+                      console.log("res",res)
+                    Swal.fire({
+                      title: '¡Carrera habilitada!',
+                      text: 'El nro '+element.carreraid+' ha sido habilitada.',
+                      icon:'success'
+                  }).then(resp =>{
+                        console.log("resp",resp.value)
+                      if(resp.value == true){
+                        Swal.close();
+                        this.ListadoCarreraFiltro();
+                      }
+                    });
+                  },
+                  err =>{
+                      console.log("error",err)
+                    Swal.fire({
+                      title: "Error",
+                      text: 'No se pudo habilitar la carrera Nro '+element.carreraid+'.',
+                      icon: "error",
+                      allowOutsideClick: false
+                    });
+                  }
+                )}
+            });
+          }
 
 
 

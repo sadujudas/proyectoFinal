@@ -1,0 +1,125 @@
+<form class="form-i-container">
+    <div class="row">
+        <div class="col-xl-10 col-md-12">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <input type="hidden" [(ngModel)]="DTOFiltroAsistencia.IdAlum" name="DTOFiltroAsistencia.IdAlum">
+                    <mat-form-field class="example-full-width">
+                        <input matInput aria-label="Alumno" [matAutocomplete]="auto4"  (focus)="rucCar.disable();rucHora.disable()" [formControl]="ruc" (focusout)="rucCar.enable();rucHora.enable();EnteroObtenerRucRazSocialAlum(ruc.value)" placeholder="Alumno">
+                        <span matSuffix style="cursor: pointer" (click)="ruc.setValue('')"><i class="fas fa-trash-alt"></i></span>
+                        <mat-autocomplete #auto4="matAutocomplete">
+                            <mat-option *ngFor="let state of filteredAlumno | async" (focusout)="obtenerIdAlum(state.Alumnoid)" [value]="state.Nom_alumno">
+                                <span>{{state.Nom_alumno}}&nbsp;{{state.Ape_alumno}}</span>
+                                <small> &nbsp;ID: {{state.Alumnoid}}</small>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <input type="hidden" [(ngModel)]="DTOFiltroAsistencia.IdCarre" name="DTOFiltroAsistencia.IdCarre">
+                    <mat-form-field class="example-full-width">
+                        <input matInput aria-label="Carrera" [matAutocomplete]="auto1" (focus)="ruc.disable();rucHora.disable()" [formControl]="rucCar" (focusout)="ruc.enable();rucHora.enable();EnteroObtenerRucRazSocialAlum(rucCar.value)" placeholder="Carrera">
+                        <span matSuffix style="cursor: pointer" (click)="rucCar.setValue('')"><i class="fas fa-trash-alt"></i></span>
+                        <mat-autocomplete #auto1="matAutocomplete">
+                            <mat-option *ngFor="let state of filteredCarrera | async" (focusout)="obtenerIdCarre(state.carreraid)" [value]="state.Nom_carrera">
+                                <span>{{state.Nom_carrera}}</span>
+                                <small> &nbsp;ID: {{state.carreraid}}</small>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <input type="hidden" [(ngModel)]="DTOFiltroAsistencia.IdHora" name="DTOFiltroAsistencia.IdHora">
+                    <mat-form-field class="example-full-width">
+                        <input matInput aria-label="Turno" [matAutocomplete]="auto3"  (focus)="rucCar.disable();ruc.disable()" [formControl]="rucHora" (focusout)="rucCar.enable();ruc.enable();EnteroObtenerRucRazSocialHora(rucHora.value)" placeholder="Turno">
+                        <span matSuffix style="cursor: pointer" (click)="rucHora.setValue('')"><i class="fas fa-trash-alt"></i></span>
+                        <mat-autocomplete #auto3="matAutocomplete">
+                            <mat-option *ngFor="let state of filteredHorario | async" (focusout)="obtenerIdHorario(state.horarioid)" [value]="state.turno">
+                                <span>{{state.turno}}</span>
+                                <small> &nbsp;ID: {{state.horarioid}}</small>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="max-width">
+                        <input matInput [max]="DTOFiltroAsistencia.FechaFin" name="DTOFiltroAsistencia.FechaIni" [(ngModel)]="DTOFiltroAsistencia.FechaIni" [matDatepicker]="pickerStart" placeholder="Fecha desde">
+                        <mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerStart [startAt]="today"></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="max-width">
+                        <input matInput [min]="DTOFiltroAsistencia.FechaIni" name="DTOFiltroAsistencia.FechaFin" [(ngModel)]="DTOFiltroAsistencia.FechaFin" [matDatepicker]="pickerEnd" placeholder="Fecha hasta">
+                        <mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerEnd [startAt]="today"></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-4 col-md-2 col-sm-12 col-xs-12">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Condicion</mat-label>
+                        <mat-select [(ngModel)]="DTOFiltroAsistencia.Condicion" name="DTOFiltroAsistencia.Condicion">
+                            <mat-option value="P">
+                                Presente
+                            </mat-option>
+                            <mat-option value="T">
+                                Tardanza
+                            </mat-option>
+                            <mat-option value="F">
+                                Falta
+                            </mat-option>
+                            <mat-option value="">
+                                Todos
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+        <div class=" col-sm-12  col-md-12 col-lg-12 col-xl-2  d-flex align-items-center ">
+            <button class="btn btn-i-primary btn-block" (click)="ListadoAsistenciaFiltro()" type="button" id="btnBuscarAlumno" >Actualizar</button>
+        </div> 
+    </div>
+</form>
+<hr/>
+<div class="table-responsive">
+    <table style="width: 100%;font-size: 11px !important;" mat-table [dataSource]="dataSource" matSort class="table tablesorter">
+        <ng-container  matColumnDef="checked">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Check</th>
+            <td *matCellDef="let element" class="d-flex justify-content-center align-content-center" style="padding-top: 15px">
+                <span matTooltip="Visualizar"  [matTooltipPosition]="'above'" class="font-20"><i style="color:darkgray"class="fa fa-eye" ></i></span>&nbsp;&nbsp;
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="asistenciaid"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Nro de Asistencia </th>
+            <td mat-cell *matCellDef="let element"> {{element.asistenciaid}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Nom_alumno"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Nombre del Alumno </th>
+            <td mat-cell *matCellDef="let element"> {{element.Nom_alumno}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Ape_alumno"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > apellido del Alumno </th>
+            <td mat-cell *matCellDef="let element"> {{element.Ape_alumno}} </td>
+        </ng-container>
+        <ng-container matColumnDef="fecha"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Fecha </th>
+            <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+        </ng-container>
+        <ng-container matColumnDef="Nom_carrera"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Nommbre de la carrera </th>
+            <td mat-cell *matCellDef="let element"> {{element.Nom_carrera}} </td>
+        </ng-container>
+        <ng-container matColumnDef="turno"  >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header > Turno</th>
+            <td mat-cell *matCellDef="let element"> {{element.turno}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="pageSizeOptions"></mat-paginator>
+</div>
+<app-loading2 *ngIf="loading"></app-loading2>
+<app-registro-asistencia *ngIf="abrirRegistroAsistencia" [asistencia]="asistencia" (cerrarRegistroAsistencias)="CerrarPopUpRegAsistencias()"></app-registro-asistencia>

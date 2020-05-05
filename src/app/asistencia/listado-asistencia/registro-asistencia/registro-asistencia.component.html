@@ -13,40 +13,55 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form [formGroup]="formularioCrearCarrera" (keydown.enter)="$event.preventDefault()" (ngSubmit)="crearCarrera()" novalidate>
+                            <form [formGroup]="formularioCrearAsistencia" (keydown.enter)="$event.preventDefault()" (ngSubmit)="crearAsistencia()" novalidate>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <mat-form-field class="example-full-width">
-                                            <input matInput placeholder="Nombre de la carrera"  type="Success Text" formControlName="Nom_carrera">
+                                        <mat-form-field class="max-width">
+                                            <mat-label>Alumnos</mat-label>
+                                            <mat-select required formControlName="alumnoid" name="alumnos" >
+                                                <mat-option *ngFor="let alumnos of arrayAlumnos" [value]="alumnos.Alumnoid">
+                                                   <span>{{alumnos.Nom_alumno}}</span>&nbsp;{{alumnos.Ape_alumno}}
+                                                </mat-option>
+                                            </mat-select>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-form-field class="example-full-width">
-                                            <input matInput placeholder="Profesor a cargo"  type="Success Text" formControlName="Profesor_cargo">
+                                        <mat-form-field class="max-width">
+                                            <mat-label>Carreras</mat-label>
+                                            <mat-select required formControlName="carreraid" name="carreras" >
+                                                <mat-option *ngFor="let carreras of arrayCarreras" [value]="carreras.carreraid">
+                                                   {{carreras.Nom_carrera}}
+                                                </mat-option>
+                                            </mat-select>
                                         </mat-form-field>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <mat-form-field class="max-width">
-                                            <mat-label>Horario</mat-label>
-                                            <mat-select required formControlName="horarioid" name="horarios" (selectionChange)="setTurno($event)">
-                                                <mat-option *ngFor="let horarios of horariosarr" [value]="horarios.horarioid">
-                                                    {{horarios.entrada}}-{{horarios.salida}}
+                                            <mat-label>Turno</mat-label>
+                                            <mat-select required formControlName="horarioid" name="horarios" >
+                                                <mat-option *ngFor="let horarios of arrayHorarios" [value]="horarios.horarioid">
+                                                    {{horarios.turno}}
                                                 </mat-option>
                                             </mat-select>
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-form-field class="example-full-width">
-                                            <input matInput required placeholder="Turno" type="Success Text"  formControlName="turno">
+                                        <mat-form-field class="max-width">
+                                            <mat-label>Condicion</mat-label>
+                                            <mat-select required formControlName="condicion">
+                                                <mat-option value="P">Presente</mat-option>
+                                                <mat-option value="T">Tarde</mat-option>
+                                                <mat-option value="F">Falta</mat-option>
+                                            </mat-select>
                                         </mat-form-field>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="alert alert-success animated fadeInDown text-center" *ngIf="save" role="alert">
-                                            ¡Carrera registrada con éxito!
+                                            ¡Asistencia registrada con éxito!
                                         </div>
                                     </div>
                                 </div>

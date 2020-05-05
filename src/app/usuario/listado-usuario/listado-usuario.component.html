@@ -13,9 +13,9 @@
 <div class="table-responsive">
     <mat-form-field style="width: 50%">
         <input matInput (keyup)="applyFilter($event.target.value)" style="text-transform:uppercase; font-size: larger;" placeholder="Filtrar" [(ngModel)]="value">
-        <span matSuffix style="cursor: pointer" *ngIf="value" (click)="value='';applyFilter('')"><i class="fa fa-trash-o"></i></span>
+        <span matSuffix style="cursor: pointer" *ngIf="value" (click)="value='';applyFilter('')"><i class="fas fa-trash-alt"></i></span>
     </mat-form-field>
-    <table style="width: 100%;font-size: 11px !important;" mat-table [dataSource]="dataSource" matSort class="table table-striped">
+    <table style="width: 100%;font-size: 11px !important;" mat-table [dataSource]="dataSource" matSort class="table tablesorter">
         <ng-container  matColumnDef="checked">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Check</th>
             <td *matCellDef="let element" class="d-flex justify-content-center align-content-center" style="padding-top: 15px">

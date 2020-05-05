@@ -19,7 +19,10 @@ import { RegistroHorarioComponent } from '../../horario/listado-horario/registro
 import { CarreraComponent } from '../../carrera/carrera.component';
 import { ListadoCarreraComponent } from '../../carrera/listado-carrera/listado-carrera.component';
 import { RegistroCarreraComponent } from '../../carrera/listado-carrera/registro-carrera/registro-carrera.component';
-  import { from } from 'rxjs';
+import { AsistenciaComponent } from '../../asistencia/asistencia.component';
+import { ListadoAsistenciaComponent } from '../../asistencia/listado-asistencia/listado-asistencia.component';
+import { RegistroAsistenciaComponent } from '../../asistencia/listado-asistencia/registro-asistencia/registro-asistencia.component';
+import { from } from 'rxjs';
 // import { RtlComponent } from "../../pages/rtl/rtl.component";
 
 export const AdminLayoutRoutes: Routes = [
@@ -42,6 +45,11 @@ export const AdminLayoutRoutes: Routes = [
   { path: "carrera", component: CarreraComponent,
   children: [
     {path:"listado",component: ListadoCarreraComponent}
+  ]
+ },
+ { path: "asistencia", component: AsistenciaComponent,
+  children: [
+    {path:"listado",component: ListadoAsistenciaComponent}
   ]
  },
   { path: "icons", component: IconsComponent },

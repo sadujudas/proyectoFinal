@@ -50,8 +50,11 @@ import { HorarioComponent } from '../../horario/horario.component';
 import { ListadoHorarioComponent } from '../../horario/listado-horario/listado-horario.component';
 import { RegistroHorarioComponent } from '../../horario/listado-horario/registro-horario/registro-horario.component';
 import { CarreraComponent } from '../../carrera/carrera.component';
-
-import { RegistroCarreraComponent } from '../../carrera/listado-carrera/registro-carrera/registro-carrera.component';import { ListadoCarreraComponent } from '../../carrera/listado-carrera/listado-carrera.component';
+import { AsistenciaComponent } from '../../asistencia/asistencia.component';
+import { ListadoAsistenciaComponent } from '../../asistencia/listado-asistencia/listado-asistencia.component';
+import { RegistroAsistenciaComponent } from '../../asistencia/listado-asistencia/registro-asistencia/registro-asistencia.component';
+import { RegistroCarreraComponent } from '../../carrera/listado-carrera/registro-carrera/registro-carrera.component';
+import { ListadoCarreraComponent } from '../../carrera/listado-carrera/listado-carrera.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -129,7 +132,10 @@ import { RegistroCarreraComponent } from '../../carrera/listado-carrera/registro
     RegistroHorarioComponent,
     CarreraComponent,
     ListadoCarreraComponent,
-    RegistroCarreraComponent
+    RegistroCarreraComponent,
+    ListadoAsistenciaComponent,
+    AsistenciaComponent,
+    RegistroAsistenciaComponent
     // RtlComponent
   ]
 })
