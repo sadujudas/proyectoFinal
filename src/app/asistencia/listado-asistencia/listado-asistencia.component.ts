@@ -93,7 +93,17 @@ export class ListadoAsistenciaComponent{
             this.obtenerCarreras();
             this.obtenerHorarios();
         }
+        blankIdAlumno(){
+          this.DTOFiltroAsistencia.IdAlum = "";
+        }
 
+        blankIdCarrera(){
+          this.DTOFiltroAsistencia.IdCarre = "";
+        }
+
+        blankIdHorario(){
+          this.DTOFiltroAsistencia.IdHora = "";
+        }
         ListadoAsistenciaFiltro(){
             this.loading = true;
             this.DTOFiltroAsistencia.FechaIni = this.datepipe.transform(this.DTOFiltroAsistencia.FechaIni,'yyyy-MM-dd')

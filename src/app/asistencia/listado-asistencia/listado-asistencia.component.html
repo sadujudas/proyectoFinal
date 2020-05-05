@@ -6,7 +6,7 @@
                     <input type="hidden" [(ngModel)]="DTOFiltroAsistencia.IdAlum" name="DTOFiltroAsistencia.IdAlum">
                     <mat-form-field class="example-full-width">
                         <input matInput aria-label="Alumno" [matAutocomplete]="auto4"  (focus)="rucCar.disable();rucHora.disable()" [formControl]="ruc" (focusout)="rucCar.enable();rucHora.enable();EnteroObtenerRucRazSocialAlum(ruc.value)" placeholder="Alumno">
-                        <span matSuffix style="cursor: pointer" (click)="ruc.setValue('')"><i class="fas fa-trash-alt"></i></span>
+                        <span matSuffix style="cursor: pointer" (click)="ruc.setValue('');blankIdAlumno()"><i class="fas fa-trash-alt"></i></span>
                         <mat-autocomplete #auto4="matAutocomplete">
                             <mat-option *ngFor="let state of filteredAlumno | async" (focusout)="obtenerIdAlum(state.Alumnoid)" [value]="state.Nom_alumno">
                                 <span>{{state.Nom_alumno}}&nbsp;{{state.Ape_alumno}}</span>
@@ -19,7 +19,7 @@
                     <input type="hidden" [(ngModel)]="DTOFiltroAsistencia.IdCarre" name="DTOFiltroAsistencia.IdCarre">
                     <mat-form-field class="example-full-width">
                         <input matInput aria-label="Carrera" [matAutocomplete]="auto1" (focus)="ruc.disable();rucHora.disable()" [formControl]="rucCar" (focusout)="ruc.enable();rucHora.enable();EnteroObtenerRucRazSocialAlum(rucCar.value)" placeholder="Carrera">
-                        <span matSuffix style="cursor: pointer" (click)="rucCar.setValue('')"><i class="fas fa-trash-alt"></i></span>
+                        <span matSuffix style="cursor: pointer" (click)="rucCar.setValue('');blankIdCarrera()"><i class="fas fa-trash-alt"></i></span>
                         <mat-autocomplete #auto1="matAutocomplete">
                             <mat-option *ngFor="let state of filteredCarrera | async" (focusout)="obtenerIdCarre(state.carreraid)" [value]="state.Nom_carrera">
                                 <span>{{state.Nom_carrera}}</span>
@@ -32,7 +32,7 @@
                     <input type="hidden" [(ngModel)]="DTOFiltroAsistencia.IdHora" name="DTOFiltroAsistencia.IdHora">
                     <mat-form-field class="example-full-width">
                         <input matInput aria-label="Turno" [matAutocomplete]="auto3"  (focus)="rucCar.disable();ruc.disable()" [formControl]="rucHora" (focusout)="rucCar.enable();ruc.enable();EnteroObtenerRucRazSocialHora(rucHora.value)" placeholder="Turno">
-                        <span matSuffix style="cursor: pointer" (click)="rucHora.setValue('')"><i class="fas fa-trash-alt"></i></span>
+                        <span matSuffix style="cursor: pointer" (click)="rucHora.setValue('');blankIdHorario()"><i class="fas fa-trash-alt"></i></span>
                         <mat-autocomplete #auto3="matAutocomplete">
                             <mat-option *ngFor="let state of filteredHorario | async" (focusout)="obtenerIdHorario(state.horarioid)" [value]="state.turno">
                                 <span>{{state.turno}}</span>
