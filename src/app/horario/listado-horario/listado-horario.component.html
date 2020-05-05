@@ -23,19 +23,19 @@
                 <span matTooltip="Dar de baja"  [matTooltipPosition]="'above'" (click)="EliminarHorario(element);" class="font-20"><i style="color:rgb(199, 17, 17)" class="fa fa-trash" ></i></span>&nbsp;&nbsp;
             </td>
         </ng-container>
-        <ng-container matColumnDef="horarioid"  >
+        <ng-container matColumnDef="horarioid"  ><!--Mostramos los datos del campo Horarioid-->
             <th mat-header-cell *matHeaderCellDef mat-sort-header > Nro de horario </th>
             <td mat-cell *matCellDef="let element"> {{element.horarioid}} </td>
         </ng-container>
-        <ng-container matColumnDef="entrada"  >
+        <ng-container matColumnDef="entrada"  ><!--Mostramos los datos del campo entrada-->
             <th mat-header-cell *matHeaderCellDef mat-sort-header > Entrada </th>
             <td mat-cell *matCellDef="let element"> {{element.entrada}} </td>
         </ng-container>
-        <ng-container matColumnDef="salida"  >
+        <ng-container matColumnDef="salida"  ><!--Mostramos los datos del campo salida-->
             <th mat-header-cell *matHeaderCellDef mat-sort-header > Salida </th>
             <td mat-cell *matCellDef="let element"> {{element.salida}} </td>
         </ng-container>
-        <ng-container matColumnDef="turno"  >
+        <ng-container matColumnDef="turno"  ><!--Mostramos los datos del campo turno-->
             <th mat-header-cell *matHeaderCellDef mat-sort-header > Turno </th>
             <td mat-cell *matCellDef="let element"> {{element.turno}} </td>
         </ng-container>

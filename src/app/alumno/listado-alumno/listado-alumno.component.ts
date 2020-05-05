@@ -53,13 +53,13 @@ export class ListadoAlumnoComponent{
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;  
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     pageSizeOptions = [15,20,30,50,100,200];
-    displayedColumns = ['checked','Alumnoid','Nom_alumno','Ape_alumno','Dni','Edad','codigo'];
+    displayedColumns = ['checked','Alumnoid','Nom_alumno','Ape_alumno','Dni','Edad','codigo']; // aqui llamamos las columnas de las tabla de alumno
     dataSource:any;
 
     constructor(private router:Router, private AlumnoService:AlumnoService,private datepipe :DatePipe){
 
     }
-    applyFilter(filterValue: string) {
+    applyFilter(filterValue: string) {//Comando que sirve para poder hacer los filtros
         console.log("valor",filterValue);
         if(null != this.dataSource){
            this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -71,10 +71,10 @@ export class ListadoAlumnoComponent{
       this.ListadoAlumnoFiltro();
     }
 
-    ListadoAlumnoFiltro(){
+    ListadoAlumnoFiltro(){//Comando que hace que puedas decidir que tabla se hara el filtro
         this.loading = true;
         console.log('this.DTOFiltroAlumno',this.DTOFiltroAlumno)
-        this.AlumnoService.ListarAlumnos(this.DTOFiltroAlumno).subscribe(
+        this.AlumnoService.ListarAlumnos(this.DTOFiltroAlumno).subscribe(//Llamamos los datos de AlumnoService para listar alumnos
             res=>{
                 this.alumnos = res;
                 console.log('this.alumnos',this.alumnos)
@@ -95,7 +95,7 @@ export class ListadoAlumnoComponent{
         )
     }
 
-    editarAlumno(element){
+    editarAlumno(element){//Llamamos los datos de AlumnoService para editar los datos de los alumnos
         this.alumno = element;
         console.log("elment",element);
         //this.flagDeudasDetalle=true;
@@ -103,7 +103,7 @@ export class ListadoAlumnoComponent{
     }
 
 
-    CerrarPopUpRegAlumnos(){
+    CerrarPopUpRegAlumnos(){//Cierra la ventana del listado
         this.ListadoAlumnoFiltro();
         console.log("cerrar en listado");
         this.abrirRegistroAlumno = false;
@@ -113,7 +113,7 @@ export class ListadoAlumnoComponent{
         console.log("baja=>",element);
         this.alumnos = element
     
-        Swal.fire({
+        Swal.fire({//Consultamos si el usuario quiere anular un alumno
             title:'Anular alumno',
             html:'<span>¿Desea anular el alumno <b>'+element.Nom_alumno+'</b>?</span>',
             icon: 'warning',
@@ -148,7 +148,7 @@ export class ListadoAlumnoComponent{
                     }
                   });
                 },
-                err =>{
+                err =>{//Mensaje en caso de que no se pudo eliminar el alumno
                     console.log("error",err)
                   Swal.fire({
                     title: "Error",

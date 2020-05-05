@@ -94,7 +94,7 @@ export class ListadoUsuarioComponent{
         )
     }
 
-    editarUsuario(element){
+    editarUsuario(element){//Llamamos los datos de UsuarioService para editar los datos de los alumnos
         this.usuario = element;
         console.log("elment",element);
         //this.flagDeudasDetalle=true;

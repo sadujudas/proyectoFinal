@@ -44,7 +44,7 @@ export class RegistroHorarioComponent implements OnInit{
 
     constructor(private routerActive:ActivatedRoute,private router:Router,private HorarioService:HorarioService,private msgStatus:MessagesStatus,private msgTitulos : MessagesTitles){
 
-        this.formularioCrearHorario = new FormGroup({
+        this.formularioCrearHorario = new FormGroup({//Mencionamos los campos que se van a agregar
             "horarioid": new FormControl(''),
             "entrada": new FormControl(''),
             "salida": new FormControl(''),
@@ -68,7 +68,7 @@ export class RegistroHorarioComponent implements OnInit{
         this.cerrarRegistroHorarios.emit();
     }
 
-    editarHorario(element){
+    editarHorario(element){//Mencionamos los campos que se van a actualizar
         this.flagCreateUpdate = true;
         this.titulo = "Editar Horario";
         this.subtitulo =  "Nro "+element.horarioid;

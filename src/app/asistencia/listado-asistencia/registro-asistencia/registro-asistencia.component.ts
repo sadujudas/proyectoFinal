@@ -68,7 +68,7 @@ export class RegistroAsistenciaComponent implements OnInit{
         private AlumnoService:AlumnoService,
         ){
 
-        this.formularioCrearAsistencia = new FormGroup({
+        this.formularioCrearAsistencia = new FormGroup({//Mencionamos los campos que se van a agregar
             "asistenciaid": new FormControl(''),
             "alumnoid": new FormControl(''),
             "carreraid": new FormControl(''),
@@ -91,7 +91,7 @@ export class RegistroAsistenciaComponent implements OnInit{
         this.cerrarRegistroAsistencias.emit();
     }
 
-    editarAsistencia(element){
+    editarAsistencia(element){//Llamamos los datos de la tabla Asistencia
         this.flagCreateUpdate = true;
         this.titulo = "Editar Registro de asistencia";
         this.subtitulo =  "Nro "+element.asistenciaid;

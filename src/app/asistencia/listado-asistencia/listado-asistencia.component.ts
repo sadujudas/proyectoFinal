@@ -72,7 +72,7 @@ export class ListadoAsistenciaComponent{
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;  
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     pageSizeOptions = [15,20,30,50,100,200];
-    displayedColumns =['checked','asistenciaid','fecha','Nom_alumno','Ape_alumno','Nom_carrera','turno'];
+    displayedColumns =['checked','asistenciaid','fecha','Nom_alumno','Ape_alumno','Nom_carrera','turno'];//mencionamos los campos que tendra 
     dataSource:any;
 
     constructor(private router:Router, 
@@ -104,10 +104,10 @@ export class ListadoAsistenciaComponent{
         blankIdHorario(){
           this.DTOFiltroAsistencia.IdHora = "";
         }
-        ListadoAsistenciaFiltro(){
+        ListadoAsistenciaFiltro(){//Buscara los datos que solicitado por filtro
             this.loading = true;
-            this.DTOFiltroAsistencia.FechaIni = this.datepipe.transform(this.DTOFiltroAsistencia.FechaIni,'yyyy-MM-dd')
-            this.DTOFiltroAsistencia.FechaFin = this.datepipe.transform(this.DTOFiltroAsistencia.FechaFin,'yyyy-MM-dd')
+            this.DTOFiltroAsistencia.FechaIni = this.datepipe.transform(this.DTOFiltroAsistencia.FechaIni,'yyyy-MM-dd')//Transforma el formato de la fecha inicio
+            this.DTOFiltroAsistencia.FechaFin = this.datepipe.transform(this.DTOFiltroAsistencia.FechaFin,'yyyy-MM-dd')//Transforma el formato de la fecha final
             console.log('this.DTOFiltroAsistencia',this.DTOFiltroAsistencia)
             this.AsistenciaService.ListarAsistencia(this.DTOFiltroAsistencia).subscribe(
                 res=>{
@@ -117,7 +117,7 @@ export class ListadoAsistenciaComponent{
                     this.dataSource.sort = this.sort;
                     this.dataSource.paginator = this.paginator;
                     this.loading = false;
-                },err =>{
+                },err =>{//Mensaje de error en cas que no encuentre los datos solicitado
                   console.log('Error',err)
                     Swal.fire({
                         title: "¡Algo salió mal!",
