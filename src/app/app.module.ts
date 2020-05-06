@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from '../app/login/login.component';
 import { Error404Component } from './error404/error404.component';
 import { AmazingTimePickerModule } from "amazing-time-picker";
 import { MatPaginatorModule } from '@angular/material/paginator'; 

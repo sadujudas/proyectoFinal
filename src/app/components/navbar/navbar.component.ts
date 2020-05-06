@@ -159,6 +159,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
+
   getTitle() {
     var titlee = this.location.prepareExternalUrl(this.location.path());
     if (titlee.charAt(0) === "#") {
@@ -192,5 +193,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(){
      window.removeEventListener("resize", this.updateColor);
+  }
+
+  CerrarSession() {
+  
+    this.router.navigate(["/login"]);
   }
 }

@@ -5,7 +5,7 @@ import { LoginService } from "./services/login/login.service";
 import { Router, Route } from "@angular/router";
 import Swal from "sweetalert2";
 
-//import "rxjs/Rx";
+import "rxjs/Rx";
 import { UserIdleService } from "angular-user-idle";
 import { SessionTimerService } from "session-expiration-alert";
 import { isNumber } from "util";
@@ -18,7 +18,7 @@ import { DatePipe } from "@angular/common";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
-  title = "black-dashboard-angular";
+  title = "Proyecto-Angular";
 
   constructor(private bnIdle: BnNgIdleService,
     private router: Router,
@@ -40,6 +40,7 @@ export class AppComponent {
       }); 
     }
     ngOnInit(){
+      
      
 
     

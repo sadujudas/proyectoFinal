@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit{
       this.LoginService.loginUsuario(this.form.value).subscribe(
         resp =>{
           this.data = resp;
-
+          
         },
         err =>{
           this.loading = false;
