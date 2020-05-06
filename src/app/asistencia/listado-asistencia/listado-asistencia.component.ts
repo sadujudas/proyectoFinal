@@ -138,7 +138,7 @@ export class ListadoAsistenciaComponent{
           
 
         obtenerAlumnos(){
-            this.AlumnoService.ListarAlumnos(this.DTOFiltroAlumno).subscribe(res =>{
+            this.AlumnoService.ListarAlumnos(this.DTOFiltroAlumno).subscribe(res =>{//Llamamos los datos de AlumnoService para listar alumnos
               this.arrayAlumnos = res;
               console.log("arrayAlumnos",this.arrayAlumnos)
               this.filteredAlumno = this.ruc.valueChanges
@@ -188,7 +188,7 @@ export class ListadoAsistenciaComponent{
               );
             })
           }
-          obtenerIdCarre(termino:string){
+          obtenerIdCarre(termino:string){//llamamos la lista mediante un filtro 
             this.idCarr = termino;
             this.DTOFiltroAsistencia.IdCarre = termino;
           }
@@ -246,14 +246,14 @@ export class ListadoAsistenciaComponent{
           }
           
 
-        editarAsistencia(element){
+        editarAsistencia(element){//Llamamos los datos de asistenciaService para editar los datos de los alumnos
             this.asistencia = element;
             console.log("elment",element);
             //this.flagDeudasDetalle=true;
             this.abrirRegistroAsistencia = true;
         }
 
-        CerrarPopUpRegAsistencias(){
+        CerrarPopUpRegAsistencias(){//Cierra la ventana del listado
             this.ListadoAsistenciaFiltro();
             console.log("cerrar en listado");
             this.abrirRegistroAsistencia = false;
