@@ -18,7 +18,7 @@
                                     <div class="col-md-6">
                                         <mat-form-field class="max-width">
                                             <mat-label>Alumnos</mat-label>
-                                            <mat-select required formControlName="alumnoid" name="alumnos" >
+                                            <mat-select required formControlName="alumnoid" name="alumnos" ><!--Agregamos un campo para gregar el idAlumno en la tabla Asistencia-->
                                                 <mat-option *ngFor="let alumnos of arrayAlumnos" [value]="alumnos.Alumnoid">
                                                    <span>{{alumnos.Nom_alumno}}</span>&nbsp;{{alumnos.Ape_alumno}}
                                                 </mat-option>
@@ -28,7 +28,7 @@
                                     <div class="col-md-6">
                                         <mat-form-field class="max-width">
                                             <mat-label>Carreras</mat-label>
-                                            <mat-select required formControlName="carreraid" name="carreras" >
+                                            <mat-select required formControlName="carreraid" name="carreras" ><!--Agregamos un campo para gregar el carreraid en la tabla Asistencia-->
                                                 <mat-option *ngFor="let carreras of arrayCarreras" [value]="carreras.carreraid">
                                                    {{carreras.Nom_carrera}}
                                                 </mat-option>
@@ -40,7 +40,7 @@
                                     <div class="col-md-6">
                                         <mat-form-field class="max-width">
                                             <mat-label>Turno</mat-label>
-                                            <mat-select required formControlName="horarioid" name="horarios" >
+                                            <mat-select required formControlName="horarioid" name="horarios" ><!--Agregamos un campo para gregar el horarioid en la tabla Asistencia-->
                                                 <mat-option *ngFor="let horarios of arrayHorarios" [value]="horarios.horarioid">
                                                     {{horarios.turno}}
                                                 </mat-option>
@@ -50,7 +50,7 @@
                                     <div class="col-md-6">
                                         <mat-form-field class="max-width">
                                             <mat-label>Condicion</mat-label>
-                                            <mat-select required formControlName="condicion">
+                                            <mat-select required formControlName="condicion"><!--Agregamos un campo para seleccionar los datos de la columna condicion-->
                                                 <mat-option value="P">Presente</mat-option>
                                                 <mat-option value="T">Tarde</mat-option>
                                                 <mat-option value="F">Falta</mat-option>

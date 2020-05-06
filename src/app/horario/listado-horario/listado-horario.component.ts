@@ -50,7 +50,7 @@ export class ListadoHorarioComponent{
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;  
     @ViewChild(MatSort, {static: true}) sort: MatSort;
     pageSizeOptions = [15,20,30,50,100,200];
-    displayedColumns =['checked','horarioid','entrada','salida','turno'];
+    displayedColumns =['checked','horarioid','entrada','salida','turno'];//Mencionamos los campos que tendra horario
     dataSource:any;
 
     constructor(private router:Router, private HorarioService:HorarioService,private datepipe :DatePipe){
@@ -71,14 +71,14 @@ export class ListadoHorarioComponent{
     ListadoHorarioFiltro(){
         this.loading = true;
         this.HorarioService.ListarHorario().subscribe(
-            res=>{
+            res=>{//Buscara los datos que solicitado por filtro
                 this.horarios = res;
                 console.log('this.horarios',this.horarios)
                 this.dataSource = new MatTableDataSource(this.horarios);
                 this.dataSource.sort = this.sort;
                 this.dataSource.paginator = this.paginator;
                 this.loading = false;
-            },err =>{
+            },err =>{//Dara error en caso que no encuentre los datos solicitado
               console.log('Error',err)
                 Swal.fire({
                     title: "¡Algo salió mal!",
@@ -95,7 +95,7 @@ export class ListadoHorarioComponent{
         this.horario = element;
         console.log("elment",element);
         //this.flagDeudasDetalle=true;
-        this.abrirRegistroHorario = true;
+        this.abrirRegistroHorario = true;//Te ubicara a la ventana donde se hara el registro
     }
 
     CerrarPopUpRegHorarios(){
@@ -106,9 +106,9 @@ export class ListadoHorarioComponent{
 
     EliminarHorario(element){
         console.log("baja=>",element);
-        this.horarios = element
+        this.horarios = element //Seleccionara el registro que quieres eliminar
     
-        Swal.fire({
+        Swal.fire({//Te consultara si desea eliminar un registro
             title:'Anular horario',
             html:'<span>¿Desea eliminar el horario <b>'+element.horarioid+'</b>?</span>',
             icon: 'warning',
